@@ -1,0 +1,7 @@
+/store/Programmierung/sudoku/CMakeFiles/install.dir
+/store/Programmierung/sudoku/CMakeFiles/list_install_components.dir
+/store/Programmierung/sudoku/CMakeFiles/rebuild_cache.dir
+/store/Programmierung/sudoku/CMakeFiles/install/local.dir
+/store/Programmierung/sudoku/CMakeFiles/install/strip.dir
+/store/Programmierung/sudoku/CMakeFiles/sudoku.dir
+/store/Programmierung/sudoku/CMakeFiles/edit_cache.dir

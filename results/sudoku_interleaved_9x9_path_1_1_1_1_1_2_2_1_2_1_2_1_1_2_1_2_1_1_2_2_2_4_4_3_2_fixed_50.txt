@@ -1,0 +1,145 @@
+A
+ 0 |   0  1  2 |   3  4  5 |   6  7  8|
+---+-----------+-----------+----------+
+ 0 |  9*  8  3 |  7*  5 2* |   6  1  4|
+ 1 |  6* 2* 1* |  8*  3  4 |   5 9*  7|
+ 2 |   4  7  5 |   1  6 9* |   2  8 3*|
+---+-----------+-----------+----------+
+ 3 |   5  9 7* |   6 4* 8* |   1 3*  2|
+ 4 |   3  4  6 |   5  2  1 |   9 7* 8*|
+ 5 |   2  1  8 |  9*  7  3 |   4  6  5|
+---+-----------+-----------+----------+
+ 6 |   7  6  4 |  3*  9  5 |   8  2 1*|
+ 7 |  1* 3*  2 |   4  8 6* |   7 5*  9|
+ 8 |  8* 5*  9 |   2  1  7 |   3 4* 6*|
+---+-----------+-----------+----------+
+
+B
+ 1 |   0  1  2 |   3  4  5 |   6  7  8|
+---+-----------+-----------+----------+
+ 0 |  3*  4  5 |   2  8  9 |  7* 6*  1|
+ 1 |   9  6  7 |   4  5 1* |   3  2  8|
+ 2 |   8 1*  2 |   3  7  6 |   9  4 5*|
+---+-----------+-----------+----------+
+ 3 |  1*  2  8 |   9  3 7* |   4 5*  6|
+ 4 |  7* 9* 4* |   1 6*  5 |  8* 3*  2|
+ 5 |   5  3  6 |   8  4  2 |   1  9  7|
+---+-----------+-----------+----------+
+ 6 |   2  5  9 |   7  1  3 |   6  8 4*|
+ 7 |  6*  8  1 |   5 9*  4 |  2* 7* 3*|
+ 8 |   4  7  3 |   6 2* 8* |   5  1  9|
+---+-----------+-----------+----------+
+
+Möglicher Lösungsweg:
+Betrachte Kreise, Wert 9 im 3x3-Quadrat links Mitte. Schreibe 9 in Feld (4,2).
+Betrachte Rauten, Feld (4,5). Hier kann nur 3 sein. Schreibe 3 in Feld (4,5).
+Betrachte Rauten, Wert 1 in Zeile 1. Schreibe 1 in Feld (1,9).
+Betrachte Kreise, Wert 9 in Spalte 9. Schreibe 9 in Feld (8,9).
+Betrachte Rauten, Wert 3 in Zeile 6. Schreibe 3 in Feld (6,2).
+Betrachte Rauten, Wert 3 in Spalte 7. Schreibe 3 in Feld (2,7).
+Betrachte Kreise, Feld (4,9). Hier kann nur 2 sein. Schreibe 2 in Feld (4,9).
+Betrachte Rauten, Feld (3,5). Hier kann nur 7 sein. Schreibe 7 in Feld (3,5).
+Betrachte Rauten, Wert 4 in Zeile 4. Schreibe 4 in Feld (4,7).
+Betrachte Rauten, Wert 1 in Spalte 8. Schreibe 1 in Feld (9,8).
+Betrachte Rauten, Wert 3 in Spalte 3. Schreibe 3 in Feld (9,3).
+Betrachte Kreise, Wert 7 in Zeile 2. Schreibe 7 in Feld (2,9).
+Betrachte Rauten, Wert 3 in Zeile 7. Schreibe 3 in Feld (7,6).
+Betrachte Rauten, Wert 3 in Zeile 3. Schreibe 3 in Feld (3,4).
+Betrachte Rauten, Feld (5,9). Hier kann nur 2 sein. Schreibe 2 in Feld (5,9).
+Betrachte Rauten, Wert 1 in Spalte 7. Schreibe 1 in Feld (6,7).
+Betrachte Rauten, Wert 7 in Zeile 6. Schreibe 7 in Feld (6,9).
+Betrachte Rauten, Feld (7,8). Hier kann nur 8 sein. Schreibe 8 in Feld (7,8).
+Betrachte Kreise, Wert 3 im 3x3-Quadrat links oben. Schreibe 3 in Feld (1,3).
+Betrachte Kreise, Wert 9 in Zeile 5. Schreibe 9 in Feld (5,7).
+Betrachte Rauten, Wert 1 in Zeile 5. Schreibe 1 in Feld (5,4).
+Betrachte Kreise, Wert 1 in Spalte 2. Schreibe 1 in Feld (6,2).
+Betrachte Rauten, Feld (5,6). Hier kann nur 5 sein. Schreibe 5 in Feld (5,6).
+Betrachte Kreise, Feld (6,8). Hier kann nur 6 sein. Schreibe 6 in Feld (6,8).
+Betrachte Kreise, Wert 3 in Zeile 9. Schreibe 3 in Feld (9,7).
+Betrachte Rauten, Feld (9,9). Hier kann nur 9 sein. Schreibe 9 in Feld (9,9).
+Betrachte Rauten, Wert 5 in Spalte 7. Schreibe 5 in Feld (9,7).
+Betrachte Kreise, Wert 9 in Spalte 5. Schreibe 9 in Feld (7,5).
+Betrachte Rauten, Feld (9,1). Hier kann nur 4 sein. Schreibe 4 in Feld (9,1).
+Betrachte Rauten, Feld (6,8). Hier kann nur 9 sein. Schreibe 9 in Feld (6,8).
+Betrachte Kreise, Feld (6,7). Hier kann nur 4 sein. Schreibe 4 in Feld (6,7).
+Betrachte Kreise, Feld (2,7). Hier kann nur 5 sein. Schreibe 5 in Feld (2,7).
+Betrachte Rauten, Wert 1 in Spalte 5. Schreibe 1 in Feld (7,5).
+Betrachte Kreise, Wert 9 in Zeile 9. Schreibe 9 in Feld (9,3).
+Betrachte Kreise, Feld (1,9). Hier kann nur 4 sein. Schreibe 4 in Feld (1,9).
+Betrachte Kreise, Feld (7,8). Hier kann nur 2 sein. Schreibe 2 in Feld (7,8).
+Betrachte Rauten, Wert 9 im 3x3-Quadrat Mitte. Schreibe 9 in Feld (4,4).
+Betrachte Kreise, Wert 3 in Zeile 5. Schreibe 3 in Feld (5,1).
+Betrachte Rauten, Wert 9 in Spalte 6. Schreibe 9 in Feld (1,6).
+Betrachte Kreise, Feld (5,6). Hier kann nur 1 sein. Schreibe 1 in Feld (5,6).
+Betrachte Kreise, Wert 5 in Spalte 6. Schreibe 5 in Feld (7,6).
+Betrachte Rauten, Wert 2 in Spalte 8. Schreibe 2 in Feld (2,8).
+Betrachte Rauten, Feld (8,2). Hier kann nur 8 sein. Schreibe 8 in Feld (8,2).
+Betrachte Rauten, Feld (3,7). Hier kann nur 9 sein. Schreibe 9 in Feld (3,7).
+Betrachte Rauten, Feld (6,6). Hier kann nur 2 sein. Schreibe 2 in Feld (6,6).
+Betrachte Kreise, Feld (4,1). Hier kann nur 5 sein. Schreibe 5 in Feld (4,1).
+Betrachte Rauten, Wert 1 in Zeile 8. Schreibe 1 in Feld (8,3).
+Betrachte Kreise, Feld (4,7). Hier kann nur 1 sein. Schreibe 1 in Feld (4,7).
+Betrachte Kreise, Feld (4,4). Hier kann nur 6 sein. Schreibe 6 in Feld (4,4).
+Betrachte Kreise, Feld (1,2). Hier kann nur 8 sein. Schreibe 8 in Feld (1,2).
+Betrachte Kreise, Wert 1 in Spalte 4. Schreibe 1 in Feld (3,4).
+Betrachte Kreise, Feld (1,7). Hier kann nur 6 sein. Schreibe 6 in Feld (1,7).
+Betrachte Kreise, Feld (1,8). Hier kann nur 1 sein. Schreibe 1 in Feld (1,8).
+Betrachte Rauten, Feld (3,8). Hier kann nur 4 sein. Schreibe 4 in Feld (3,8).
+Betrachte Kreise, Feld (9,6). Hier kann nur 7 sein. Schreibe 7 in Feld (9,6).
+Betrachte Kreise, Feld (6,1). Hier kann nur 2 sein. Schreibe 2 in Feld (6,1).
+Betrachte Kreise, Feld (6,9). Hier kann nur 5 sein. Schreibe 5 in Feld (6,9).
+Betrachte Kreise, Feld (9,5). Hier kann nur 1 sein. Schreibe 1 in Feld (9,5).
+Betrachte Kreise, Wert 2 in Zeile 3. Schreibe 2 in Feld (3,7).
+Betrachte Kreise, Feld (3,8). Hier kann nur 8 sein. Schreibe 8 in Feld (3,8).
+Betrachte Kreise, Feld (9,4). Hier kann nur 2 sein. Schreibe 2 in Feld (9,4).
+Betrachte Kreise, Feld (8,5). Hier kann nur 8 sein. Schreibe 8 in Feld (8,5).
+Betrachte Kreise, Feld (8,4). Hier kann nur 4 sein. Schreibe 4 in Feld (8,4).
+Betrachte Kreise, Feld (5,3). Hier kann nur 6 sein. Schreibe 6 in Feld (5,3).
+Betrachte Kreise, Feld (5,2). Hier kann nur 4 sein. Schreibe 4 in Feld (5,2).
+Betrachte Rauten, Feld (4,2). Hier kann nur 2 sein. Schreibe 2 in Feld (4,2).
+Betrachte Kreise, Feld (1,5). Hier kann nur 5 sein. Schreibe 5 in Feld (1,5).
+Betrachte Kreise, Wert 8 im 3x3-Quadrat rechts unten. Schreibe 8 in Feld (7,7).
+Betrachte Rauten, Feld (8,4). Hier kann nur 5 sein. Schreibe 5 in Feld (8,4).
+Betrachte Kreise, Feld (5,5). Hier kann nur 2 sein. Schreibe 2 in Feld (5,5).
+Betrachte Rauten, Feld (8,6). Hier kann nur 4 sein. Schreibe 4 in Feld (8,6).
+Betrachte Kreise, Wert 6 in Zeile 7. Schreibe 6 in Feld (7,2).
+Betrachte Rauten, Feld (2,9). Hier kann nur 8 sein. Schreibe 8 in Feld (2,9).
+Betrachte Rauten, Feld (4,9). Hier kann nur 6 sein. Schreibe 6 in Feld (4,9).
+Betrachte Kreise, Feld (6,6). Hier kann nur 3 sein. Schreibe 3 in Feld (6,6).
+Betrachte Kreise, Feld (6,3). Hier kann nur 8 sein. Schreibe 8 in Feld (6,3).
+Betrachte Kreise, Feld (2,6). Hier kann nur 4 sein. Schreibe 4 in Feld (2,6).
+Betrachte Kreise, Feld (8,3). Hier kann nur 2 sein. Schreibe 2 in Feld (8,3).
+Betrachte Rauten, Feld (9,2). Hier kann nur 7 sein. Schreibe 7 in Feld (9,2).
+Betrachte Rauten, Wert 7 in Zeile 2. Schreibe 7 in Feld (2,3).
+Betrachte Rauten, Wert 7 in Zeile 7. Schreibe 7 in Feld (7,4).
+Betrachte Kreise, Feld (7,3). Hier kann nur 4 sein. Schreibe 4 in Feld (7,3).
+Betrachte Rauten, Feld (9,4). Hier kann nur 6 sein. Schreibe 6 in Feld (9,4).
+Betrachte Kreise, Feld (7,1). Hier kann nur 7 sein. Schreibe 7 in Feld (7,1).
+Betrachte Rauten, Feld (7,2). Hier kann nur 5 sein. Schreibe 5 in Feld (7,2).
+Betrachte Kreise, Feld (5,4). Hier kann nur 5 sein. Schreibe 5 in Feld (5,4).
+Betrachte Rauten, Feld (4,3). Hier kann nur 8 sein. Schreibe 8 in Feld (4,3).
+Betrachte Rauten, Feld (1,2). Hier kann nur 4 sein. Schreibe 4 in Feld (1,2).
+Betrachte Rauten, Wert 8 in Spalte 1. Schreibe 8 in Feld (3,1).
+Betrachte Rauten, Feld (2,5). Hier kann nur 5 sein. Schreibe 5 in Feld (2,5).
+Betrachte Kreise, Feld (3,1). Hier kann nur 4 sein. Schreibe 4 in Feld (3,1).
+Betrachte Rauten, Feld (7,7). Hier kann nur 6 sein. Schreibe 6 in Feld (7,7).
+Betrachte Rauten, Wert 2 in Zeile 7. Schreibe 2 in Feld (7,1).
+Betrachte Kreise, Feld (3,5). Hier kann nur 6 sein. Schreibe 6 in Feld (3,5).
+Betrachte Kreise, Feld (6,5). Hier kann nur 7 sein. Schreibe 7 in Feld (6,5).
+Betrachte Rauten, Feld (1,5). Hier kann nur 8 sein. Schreibe 8 in Feld (1,5).
+Betrachte Rauten, Feld (2,4). Hier kann nur 4 sein. Schreibe 4 in Feld (2,4).
+Betrachte Rauten, Feld (6,5). Hier kann nur 4 sein. Schreibe 4 in Feld (6,5).
+Betrachte Kreise, Feld (3,2). Hier kann nur 7 sein. Schreibe 7 in Feld (3,2).
+Betrachte Rauten, Feld (6,1). Hier kann nur 5 sein. Schreibe 5 in Feld (6,1).
+Betrachte Rauten, Feld (2,2). Hier kann nur 6 sein. Schreibe 6 in Feld (2,2).
+Betrachte Rauten, Wert 5 in Zeile 1. Schreibe 5 in Feld (1,3).
+Betrachte Rauten, Feld (6,4). Hier kann nur 8 sein. Schreibe 8 in Feld (6,4).
+Betrachte Kreise, Feld (2,5). Hier kann nur 3 sein. Schreibe 3 in Feld (2,5).
+Betrachte Rauten, Feld (3,3). Hier kann nur 2 sein. Schreibe 2 in Feld (3,3).
+Betrachte Rauten, Feld (3,6). Hier kann nur 6 sein. Schreibe 6 in Feld (3,6).
+Betrachte Rauten, Feld (7,3). Hier kann nur 9 sein. Schreibe 9 in Feld (7,3).
+Betrachte Rauten, Feld (6,3). Hier kann nur 6 sein. Schreibe 6 in Feld (6,3).
+Betrachte Rauten, Feld (2,1). Hier kann nur 9 sein. Schreibe 9 in Feld (2,1).
+Betrachte Kreise, Feld (8,7). Hier kann nur 7 sein. Schreibe 7 in Feld (8,7).
+Betrachte Kreise, Feld (3,3). Hier kann nur 5 sein. Schreibe 5 in Feld (3,3).
+Betrachte Rauten, Feld (1,4). Hier kann nur 2 sein. Schreibe 2 in Feld (1,4).

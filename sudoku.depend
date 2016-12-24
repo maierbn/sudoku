@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1464299790 source:/store/Programmierung/sudoku/interleaved_sudoku.cpp
+	"interleaved_sudoku.h"
+	<iostream>
+	<ctime>
+	<fstream>
+	<sstream>
+	<set>
+	<vector>
+	<chrono>
+
+1464299789 /store/Programmierung/sudoku/interleaved_sudoku.h
+	"sudoku.h"
+
+1464299789 /store/Programmierung/sudoku/sudoku.h
+	<vector>
+	<memory>
+	<list>
+	"field.h"
+
+1464299788 /store/Programmierung/sudoku/field.h
+	<vector>
+	<memory>
+	<set>
+
