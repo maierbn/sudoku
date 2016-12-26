@@ -3,11 +3,14 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="sudoku" />
+		<Option makefile_is_custom="1" />
 		<Option pch_mode="2" />
 		<Option compiler="gfortran" />
 		<Build>
-			<Target title="Release">
-				<Option type="4" />
+			<Target title="all">
+				<Option output="sudoku" prefix_auto="0" extension_auto="0" />
+				<Option object_output="/store/Programmierung/sudoku/.objs" />
+				<Option type="1" />
 				<Option compiler="gfortran" />
 				<Compiler>
 					<Add option="-O2" />
@@ -15,10 +18,13 @@
 				<Linker>
 					<Add option="-s" />
 				</Linker>
+			</Target>
+			<Target title="cmake">
+				<Option type="4" />
+				<Option compiler="gfortran" />
 				<ExtraCommands>
 					<Add before="cmake ." />
-					<Add before="make" />
-					<Add before="./sudoku" />
+					<Mode after="always" />
 				</ExtraCommands>
 			</Target>
 		</Build>
@@ -26,13 +32,35 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="field.cpp" />
-		<Unit filename="field.h" />
-		<Unit filename="interleaved_sudoku.cpp" />
-		<Unit filename="interleaved_sudoku.h" />
-		<Unit filename="main.cpp" />
-		<Unit filename="sudoku.cpp" />
-		<Unit filename="sudoku.h" />
+		<Unit filename="chained_sudoku.cpp">
+			<Option target="all" />
+		</Unit>
+		<Unit filename="chained_sudoku.h">
+			<Option target="all" />
+		</Unit>
+		<Unit filename="compare_fields.cpp" />
+		<Unit filename="compare_fields.h" />
+		<Unit filename="field.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="field.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="interleaved_sudoku.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="interleaved_sudoku.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="main.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="sudoku.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="sudoku.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Extensions>
 			<code_completion />
 			<debugger />

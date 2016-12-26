@@ -4,15 +4,17 @@
 #include <iostream>
 #include <algorithm>
 
-Field::Field(int pos_x, int pos_y, int pos_z, int max_value) : value_(0), valuesPossible_(max_value), n_possible_(0), pos_x_(pos_x), pos_y_(pos_y), pos_z_(pos_z), fixed_(false), max_value_(max_value)
+Field::Field(int id, int pos_x, int pos_y, int pos_z, int max_value) :
+  value_(0), valuesPossible_(max_value), n_possible_(0), pos_x_(pos_x), pos_y_(pos_y), pos_z_(pos_z), id_(id),
+  fixed_(false), max_value_(max_value)
 {
 
 }
 
-Field::Field(int pos_x, int pos_y, int pos_z, int max_value, std::vector<std::shared_ptr<Field>> dependencies) :
-  Field(pos_x, pos_y, pos_z, max_value)
+Field::Field(int id, int pos_x, int pos_y, int pos_z, int max_value, std::vector<std::shared_ptr<Field>> dependencies) :
+  Field(id, pos_x, pos_y, pos_z, max_value)
 {
-  dependencies_.insert(dependencies_.begin(), dependencies.begin(), dependencies.end());
+  dependencies_.insert(dependencies.begin(), dependencies.end());
 }
 
 void Field::setValue(int value)
@@ -37,7 +39,7 @@ int Field::value()
 
 void Field::addDependency(std::shared_ptr<Field> dependency)
 {
-  dependencies_.push_back(dependency);
+  dependencies_.insert(dependency);
 }
 
 bool Field::alreadyTried(int i)
@@ -123,7 +125,7 @@ void Field::storePossible()
       valuesPossible_[i-1] = isPossibleFromDependencies(i);
 
       if(valuesPossible_[i-1])
-	n_possible_++;
+        n_possible_++;
     }
   }
 }
@@ -139,6 +141,9 @@ bool Field::valuePossible(int i)
   {
     return value_ == i;
   }
+  int l = valuesPossible_.size();
+  if(l < i)
+    return false;
   return valuesPossible_.at(i-1);
 }
 
@@ -174,20 +179,35 @@ int Field::pos_z()
   return pos_z_;
 }
 
+int Field::id()
+{
+  return id_;
+}
+
+int Field::max_value()
+{
+  return max_value_;
+}
+
 void Field::setPosZ(int pos_z)
 {
   pos_z_ = pos_z;
 }
 
-std::vector< std::shared_ptr< Field > > Field::dependencies()
+void Field::setId(int id)
+{
+  id_ = id;
+}
+
+std::set< std::shared_ptr< Field >, CompareFields > Field::dependencies()
 {
   return dependencies_;
 }
 
 
-void Field::addDependencies(std::vector<std::shared_ptr<Field>> dependencies)
+void Field::addDependencies(std::set<std::shared_ptr<Field>, CompareFields> dependencies)
 {
-  dependencies_.insert(dependencies_.begin(), dependencies.begin(), dependencies.end());
+  dependencies_.insert(dependencies.begin(), dependencies.end());
 }
 
 void Field::resetTriedValues()

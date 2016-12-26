@@ -153,12 +153,62 @@ CMakeFiles/sudoku.dir/field.cpp.o.provides: CMakeFiles/sudoku.dir/field.cpp.o.re
 CMakeFiles/sudoku.dir/field.cpp.o.provides.build: CMakeFiles/sudoku.dir/field.cpp.o
 
 
+CMakeFiles/sudoku.dir/compare_fields.cpp.o: CMakeFiles/sudoku.dir/flags.make
+CMakeFiles/sudoku.dir/compare_fields.cpp.o: compare_fields.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/store/Programmierung/sudoku/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sudoku.dir/compare_fields.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sudoku.dir/compare_fields.cpp.o -c /store/Programmierung/sudoku/compare_fields.cpp
+
+CMakeFiles/sudoku.dir/compare_fields.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sudoku.dir/compare_fields.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /store/Programmierung/sudoku/compare_fields.cpp > CMakeFiles/sudoku.dir/compare_fields.cpp.i
+
+CMakeFiles/sudoku.dir/compare_fields.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sudoku.dir/compare_fields.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /store/Programmierung/sudoku/compare_fields.cpp -o CMakeFiles/sudoku.dir/compare_fields.cpp.s
+
+CMakeFiles/sudoku.dir/compare_fields.cpp.o.requires:
+
+.PHONY : CMakeFiles/sudoku.dir/compare_fields.cpp.o.requires
+
+CMakeFiles/sudoku.dir/compare_fields.cpp.o.provides: CMakeFiles/sudoku.dir/compare_fields.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/compare_fields.cpp.o.provides.build
+.PHONY : CMakeFiles/sudoku.dir/compare_fields.cpp.o.provides
+
+CMakeFiles/sudoku.dir/compare_fields.cpp.o.provides.build: CMakeFiles/sudoku.dir/compare_fields.cpp.o
+
+
+CMakeFiles/sudoku.dir/chained_sudoku.cpp.o: CMakeFiles/sudoku.dir/flags.make
+CMakeFiles/sudoku.dir/chained_sudoku.cpp.o: chained_sudoku.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/store/Programmierung/sudoku/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sudoku.dir/chained_sudoku.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/sudoku.dir/chained_sudoku.cpp.o -c /store/Programmierung/sudoku/chained_sudoku.cpp
+
+CMakeFiles/sudoku.dir/chained_sudoku.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sudoku.dir/chained_sudoku.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /store/Programmierung/sudoku/chained_sudoku.cpp > CMakeFiles/sudoku.dir/chained_sudoku.cpp.i
+
+CMakeFiles/sudoku.dir/chained_sudoku.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sudoku.dir/chained_sudoku.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /store/Programmierung/sudoku/chained_sudoku.cpp -o CMakeFiles/sudoku.dir/chained_sudoku.cpp.s
+
+CMakeFiles/sudoku.dir/chained_sudoku.cpp.o.requires:
+
+.PHONY : CMakeFiles/sudoku.dir/chained_sudoku.cpp.o.requires
+
+CMakeFiles/sudoku.dir/chained_sudoku.cpp.o.provides: CMakeFiles/sudoku.dir/chained_sudoku.cpp.o.requires
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/chained_sudoku.cpp.o.provides.build
+.PHONY : CMakeFiles/sudoku.dir/chained_sudoku.cpp.o.provides
+
+CMakeFiles/sudoku.dir/chained_sudoku.cpp.o.provides.build: CMakeFiles/sudoku.dir/chained_sudoku.cpp.o
+
+
 # Object files for target sudoku
 sudoku_OBJECTS = \
 "CMakeFiles/sudoku.dir/main.cpp.o" \
 "CMakeFiles/sudoku.dir/sudoku.cpp.o" \
 "CMakeFiles/sudoku.dir/interleaved_sudoku.cpp.o" \
-"CMakeFiles/sudoku.dir/field.cpp.o"
+"CMakeFiles/sudoku.dir/field.cpp.o" \
+"CMakeFiles/sudoku.dir/compare_fields.cpp.o" \
+"CMakeFiles/sudoku.dir/chained_sudoku.cpp.o"
 
 # External object files for target sudoku
 sudoku_EXTERNAL_OBJECTS =
@@ -167,9 +217,11 @@ sudoku: CMakeFiles/sudoku.dir/main.cpp.o
 sudoku: CMakeFiles/sudoku.dir/sudoku.cpp.o
 sudoku: CMakeFiles/sudoku.dir/interleaved_sudoku.cpp.o
 sudoku: CMakeFiles/sudoku.dir/field.cpp.o
+sudoku: CMakeFiles/sudoku.dir/compare_fields.cpp.o
+sudoku: CMakeFiles/sudoku.dir/chained_sudoku.cpp.o
 sudoku: CMakeFiles/sudoku.dir/build.make
 sudoku: CMakeFiles/sudoku.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/store/Programmierung/sudoku/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable sudoku"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/store/Programmierung/sudoku/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable sudoku"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sudoku.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -181,6 +233,8 @@ CMakeFiles/sudoku.dir/requires: CMakeFiles/sudoku.dir/main.cpp.o.requires
 CMakeFiles/sudoku.dir/requires: CMakeFiles/sudoku.dir/sudoku.cpp.o.requires
 CMakeFiles/sudoku.dir/requires: CMakeFiles/sudoku.dir/interleaved_sudoku.cpp.o.requires
 CMakeFiles/sudoku.dir/requires: CMakeFiles/sudoku.dir/field.cpp.o.requires
+CMakeFiles/sudoku.dir/requires: CMakeFiles/sudoku.dir/compare_fields.cpp.o.requires
+CMakeFiles/sudoku.dir/requires: CMakeFiles/sudoku.dir/chained_sudoku.cpp.o.requires
 
 .PHONY : CMakeFiles/sudoku.dir/requires
 

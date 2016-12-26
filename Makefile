@@ -167,6 +167,60 @@ sudoku/fast:
 	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/build
 .PHONY : sudoku/fast
 
+chained_sudoku.o: chained_sudoku.cpp.o
+
+.PHONY : chained_sudoku.o
+
+# target to build an object file
+chained_sudoku.cpp.o:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/chained_sudoku.cpp.o
+.PHONY : chained_sudoku.cpp.o
+
+chained_sudoku.i: chained_sudoku.cpp.i
+
+.PHONY : chained_sudoku.i
+
+# target to preprocess a source file
+chained_sudoku.cpp.i:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/chained_sudoku.cpp.i
+.PHONY : chained_sudoku.cpp.i
+
+chained_sudoku.s: chained_sudoku.cpp.s
+
+.PHONY : chained_sudoku.s
+
+# target to generate assembly for a file
+chained_sudoku.cpp.s:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/chained_sudoku.cpp.s
+.PHONY : chained_sudoku.cpp.s
+
+compare_fields.o: compare_fields.cpp.o
+
+.PHONY : compare_fields.o
+
+# target to build an object file
+compare_fields.cpp.o:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/compare_fields.cpp.o
+.PHONY : compare_fields.cpp.o
+
+compare_fields.i: compare_fields.cpp.i
+
+.PHONY : compare_fields.i
+
+# target to preprocess a source file
+compare_fields.cpp.i:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/compare_fields.cpp.i
+.PHONY : compare_fields.cpp.i
+
+compare_fields.s: compare_fields.cpp.s
+
+.PHONY : compare_fields.s
+
+# target to generate assembly for a file
+compare_fields.cpp.s:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/compare_fields.cpp.s
+.PHONY : compare_fields.cpp.s
+
 field.o: field.cpp.o
 
 .PHONY : field.o
@@ -288,6 +342,12 @@ help:
 	@echo "... install/strip"
 	@echo "... sudoku"
 	@echo "... edit_cache"
+	@echo "... chained_sudoku.o"
+	@echo "... chained_sudoku.i"
+	@echo "... chained_sudoku.s"
+	@echo "... compare_fields.o"
+	@echo "... compare_fields.i"
+	@echo "... compare_fields.s"
 	@echo "... field.o"
 	@echo "... field.i"
 	@echo "... field.s"

@@ -4,6 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/store/Programmierung/sudoku/chained_sudoku.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/chained_sudoku.cpp.o"
+  "/store/Programmierung/sudoku/compare_fields.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/compare_fields.cpp.o"
   "/store/Programmierung/sudoku/field.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/field.cpp.o"
   "/store/Programmierung/sudoku/interleaved_sudoku.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/interleaved_sudoku.cpp.o"
   "/store/Programmierung/sudoku/main.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/main.cpp.o"

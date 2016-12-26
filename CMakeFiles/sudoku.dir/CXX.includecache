@@ -6,6 +6,44 @@
 
 #IncludeRegexTransform: 
 
+/store/Programmierung/sudoku/chained_sudoku.cpp
+chained_sudoku.h
+/store/Programmierung/sudoku/chained_sudoku.h
+sudoku.h
+/store/Programmierung/sudoku/sudoku.h
+iostream
+-
+ctime
+-
+fstream
+-
+sstream
+-
+set
+-
+vector
+-
+chrono
+-
+algorithm
+-
+random
+-
+
+/store/Programmierung/sudoku/chained_sudoku.h
+sudoku.h
+/store/Programmierung/sudoku/sudoku.h
+
+/store/Programmierung/sudoku/compare_fields.cpp
+compare_fields.h
+/store/Programmierung/sudoku/compare_fields.h
+field.h
+/store/Programmierung/sudoku/field.h
+
+/store/Programmierung/sudoku/compare_fields.h
+memory
+-
+
 /store/Programmierung/sudoku/field.cpp
 field.h
 /store/Programmierung/sudoku/field.h
@@ -23,6 +61,8 @@ memory
 -
 set
 -
+compare_fields.h
+/store/Programmierung/sudoku/compare_fields.h
 
 /store/Programmierung/sudoku/interleaved_sudoku.cpp
 interleaved_sudoku.h
@@ -53,6 +93,8 @@ sudoku.h
 /store/Programmierung/sudoku/sudoku.h
 interleaved_sudoku.h
 /store/Programmierung/sudoku/interleaved_sudoku.h
+chained_sudoku.h
+/store/Programmierung/sudoku/chained_sudoku.h
 
 /store/Programmierung/sudoku/sudoku.cpp
 sudoku.h

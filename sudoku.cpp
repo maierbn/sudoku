@@ -25,7 +25,7 @@ Sudoku::Sudoku(int size) : size_(size), squared_size_(size*size), current_z_(0),
   {
     for (int y = 0; y < squared_size_; y++)
     {
-      fields_[index(x,y)] = std::move(std::unique_ptr<Field>(new Field(x,y,current_z_,squared_size_)));
+      fields_[index(x,y)] = std::move(std::unique_ptr<Field>(new Field(index(x,y),x,y,current_z_,squared_size_)));
     }
   }
   /*
@@ -99,6 +99,7 @@ void Sudoku::permuteNumbers()
     std::swap(permutation[i], permutation[index]);
   }
 
+  // apply permutation
   for(int x = 0; x < squared_size_; x++)
   {
     for (int y = 0; y < squared_size_; y++)
@@ -111,6 +112,7 @@ void Sudoku::permuteNumbers()
 
 int Sudoku::index(int x, int y)
 {
+  //std::cout<<"WARING, Sudoku::index called (maybe chained_sudoku/index would be correct?)"<<std::endl;
   return y*squared_size_ + x;
 }
 
@@ -147,6 +149,17 @@ int Sudoku::n_fixed()
   return nFixed;
 }
 
+void Sudoku::set(int pos_x, int pos_y, int value, bool fixed)
+{
+  fields_[index(pos_x,pos_y)]->setValue(value);
+  fields_[index(pos_x,pos_y)]->setFixed(fixed);
+}
+
+void Sudoku::setOneFixed(int pos_x, int pos_y, bool fixed)
+{
+  fields_[index(pos_x,pos_y)]->setFixed(fixed);
+}
+
 void Sudoku::createSolution()
 {
   const bool debug = false;
@@ -168,6 +181,8 @@ void Sudoku::createSolution()
     std::cout<<"current top field: "<<trace.top()->pos()<<" (next Field: "<<(*nextField)->pos()<<")"<<std::endl;
   }
 
+  int counter = 0;
+  bool first_were_solved = false;
   do
   {
     if(trace.top()->setNewValue())
@@ -187,6 +202,7 @@ void Sudoku::createSolution()
       trace.pop();
       decrementFieldIterator(nextField);
     }
+    counter++;
 
     if(debug)
     {
@@ -198,9 +214,41 @@ void Sudoku::createSolution()
       else
         std::cout<<std::endl;
       std::cout<<std::string(80,'-')<<std::endl;
+
+      if(counter % 10 == 0)
+      {
+        std::cout<<"(press any key to continue) "<<std::endl;
+        std::cin.get();
+      }
+    }
+
+    if(counter % 10000 == 0)
+      std::cout<<std::string(50, '\b')<<counter<<" steps, trace size: "<<trace.size()<<"      ";
+
+    if(counter >= 1000000 && !first_were_solved)
+    {
+      if(trace.size() >= 400)
+      {
+        first_were_solved = true;
+      }
+      else
+      {
+
+        std::cout<<"restart at "<<counter<<std::endl;
+        counter = 0;
+        while(!trace.empty())
+        {
+          trace.top()->resetTriedValues();
+          trace.pop();
+        }
+        nextField = fields_.begin();
+        trace.push(*nextField);
+        incrementFieldIterator(nextField);
+      }
     }
   }
   while(!trace.empty());
+  std::cout<<"done after "<<counter<<" steps"<<std::endl;
   /*
   auto compare = [](std::shared_ptr<Field> &a, std::shared_ptr<Field> &b)
   {
@@ -220,61 +268,63 @@ void Sudoku::createSolution()
   if(trace.empty())
     std::cout<<"Sudoku has no solution!"<<std::endl;
   else
-    std::cout<<"Sudoku createSolutiond, trace size: "<<trace.size()<<std::endl;
+    std::cout<<"Sudoku created, trace size: "<<trace.size()<<std::endl;
 }
 
 bool Sudoku::rowCheck(std::list<FurtherWays> &furtherWays_, std::vector<std::shared_ptr<Field>> &testFields, bool recordFullFurtherWays, bool debug)
 {
   bool restart = false;
 
-    //check rows, if there are values that can only be at one position
-    restart = false;
-    for (int y = 0; y < squared_size_; y++)
+  //check rows, if there are values that can only be at one position
+  restart = false;
+  for (int y = 0; y < squared_size_; y++)
+  {
+
+    for (int value = 1; value <= squared_size_; value++)
     {
-
-      for (int value = 1; value <= squared_size_; value++)
+      bool valueIsAlreadySet = false;
+      int nPossiblePositionsForValue = 0;
+      int positionX = 0;
+      for (int x = 0; x < squared_size_; x++)
       {
-	bool valueIsAlreadySet = false;
-	int nPossiblePositionsForValue = 0;
-	int positionX = 0;
-	for (int x = 0; x < squared_size_; x++)
-	{
-	  if(testFields[index(x,y)]->value() == value)
-	  {
-	    valueIsAlreadySet = true;
-	    break;
-	  }
+        int i = index(x,y);
+        int si = testFields.size();
+        if(testFields[index(x,y)]->value() == value)
+        {
+          valueIsAlreadySet = true;
+          break;
+        }
 
-	  if(testFields[index(x,y)]->valuePossible(value))
-	  {
-	    nPossiblePositionsForValue++;
-	    positionX = x;
-	  }
-	  if(nPossiblePositionsForValue > 1)
-	    break;
-	}
-
-	//if Value can only be at one position, set it there
-	if(nPossiblePositionsForValue == 1 && !valueIsAlreadySet)
-	{
-	  if(debug)
-	    std::cout<<"  Row check (row "<<y<<"): value "<<value<<" has to be in field ("<<positionX<<","<<y<<","<<current_z_<<")"<<std::endl;
-
-	  furtherWays_.back().nRowCheckMatches++;
-	  furtherWays_.back().addWay(positionX, y, current_z_, value, 1);
-
-	  if(!recordFullFurtherWays)
-	  {
-	    testFields[index(positionX,y)]->setValue(value);
-	    restart = true;
-	    break;
-	  }
-	}
+        if(testFields[index(x,y)]->valuePossible(value))
+        {
+          nPossiblePositionsForValue++;
+          positionX = x;
+        }
+        if(nPossiblePositionsForValue > 1)
+          break;
       }
-      if(restart)
-	break;
+
+      //if Value can only be at one position, set it there
+      if(nPossiblePositionsForValue == 1 && !valueIsAlreadySet)
+      {
+        if(debug)
+          std::cout<<"  Row check (row "<<y<<"): value "<<value<<" has to be in field ("<<positionX<<","<<y<<","<<current_z_<<")"<<std::endl;
+
+        furtherWays_.back().nRowCheckMatches++;
+        furtherWays_.back().addWay(index(positionX,y), positionX, y, current_z_, value, 1);
+
+        if(!recordFullFurtherWays)
+        {
+          testFields[index(positionX,y)]->setValue(value);
+          restart = true;
+          break;
+        }
+      }
     }
-    return restart;
+    if(restart)
+      break;
+  }
+  return restart;
 }
 
 bool Sudoku::columnCheck(std::list<FurtherWays> &furtherWays_, std::vector<std::shared_ptr<Field>> &testFields, bool recordFullFurtherWays, bool debug)
@@ -293,36 +343,36 @@ bool Sudoku::columnCheck(std::list<FurtherWays> &furtherWays_, std::vector<std::
       int positionY = 0;
       for (int y = 0; y < squared_size_; y++)
       {
-	if(testFields[index(x,y)]->value() == value)
-	{
-	  valueIsAlreadySet = true;
-	  break;
-	}
+        if(testFields[index(x,y)]->value() == value)
+        {
+          valueIsAlreadySet = true;
+          break;
+        }
 
-	if(testFields[index(x,y)]->valuePossible(value))
-	{
-	  nPossiblePositionsForValue++;
-	  positionY = y;
-	}
-	if(nPossiblePositionsForValue > 1)
-	  break;
+        if(testFields[index(x,y)]->valuePossible(value))
+        {
+          nPossiblePositionsForValue++;
+          positionY = y;
+        }
+        if(nPossiblePositionsForValue > 1)
+          break;
       }
 
       //if Value can only be at one position, set it there
       if(nPossiblePositionsForValue == 1 && !valueIsAlreadySet)
       {
-	if(debug)
-	  std::cout<<"Column check (column "<<x<<"): value "<<value<<" has to be in field ("<<x<<","<<positionY<<","<<current_z_<<")"<<std::endl;
+        if(debug)
+          std::cout<<"Column check (column "<<x<<"): value "<<value<<" has to be in field ("<<x<<","<<positionY<<","<<current_z_<<")"<<std::endl;
 
-	furtherWays_.back().nColumnCheckMatches++;
-	furtherWays_.back().addWay(x, positionY, current_z_, value, 2);
+        furtherWays_.back().nColumnCheckMatches++;
+        furtherWays_.back().addWay(index(x,positionY), x, positionY, current_z_, value, 2);
 
-	if(!recordFullFurtherWays)
-	{
-	  testFields[index(x,positionY)]->setValue(value);
-	  restart = true;
-	  break;
-	}
+        if(!recordFullFurtherWays)
+        {
+          testFields[index(x,positionY)]->setValue(value);
+          restart = true;
+          break;
+        }
       }
     }
     if(restart)
@@ -344,60 +394,60 @@ bool Sudoku::boxCheck(std::list<FurtherWays> &furtherWays_, std::vector<std::sha
     {
       for (int value = 1; value <= squared_size_; value++)
       {
-	bool valueIsAlreadySet = false;
-	int nPossiblePositionsForValue = 0;
-	int positionX = 0;
-	int positionY = 0;
+        bool valueIsAlreadySet = false;
+        int nPossiblePositionsForValue = 0;
+        int positionX = 0;
+        int positionY = 0;
 
-	for (int field3x3_x = 0; field3x3_x < size_; field3x3_x++)
-	{
-	  for (int field3x3_y = 0; field3x3_y < size_; field3x3_y++)
-	  {
-	    int indexX = field3x3_no_x*size_ + field3x3_x;
-	    int indexY = field3x3_no_y*size_ + field3x3_y;
+        for (int field3x3_x = 0; field3x3_x < size_; field3x3_x++)
+        {
+          for (int field3x3_y = 0; field3x3_y < size_; field3x3_y++)
+          {
+            int indexX = field3x3_no_x*size_ + field3x3_x;
+            int indexY = field3x3_no_y*size_ + field3x3_y;
 
-	    if(testFields[index(indexX,indexY)]->value() == value)
-	    {
-	      valueIsAlreadySet = true;
-	      break;
-	    }
+            if(testFields[index(indexX,indexY)]->value() == value)
+            {
+              valueIsAlreadySet = true;
+              break;
+            }
 
-	    if(testFields[index(indexX,indexY)]->valuePossible(value))
-	    {
-	      nPossiblePositionsForValue++;
-	      positionX = indexX;
-	      positionY = indexY;
-	    }
+            if(testFields[index(indexX,indexY)]->valuePossible(value))
+            {
+              nPossiblePositionsForValue++;
+              positionX = indexX;
+              positionY = indexY;
+            }
 
-	    if(nPossiblePositionsForValue > 1)
-	      break;
-	  }
-	  if(nPossiblePositionsForValue > 1)
-	    break;
-	  if(valueIsAlreadySet)
-	    break;
-	}
+            if(nPossiblePositionsForValue > 1)
+              break;
+          }
+          if(nPossiblePositionsForValue > 1)
+            break;
+          if(valueIsAlreadySet)
+            break;
+        }
 
-	//if Value can only be at one position, set it there
-	if(nPossiblePositionsForValue == 1 && !valueIsAlreadySet)
-	{
-	  if(debug)
-	    std::cout<<"Box check (box "<<field3x3_no_x<<","<<field3x3_no_y<<"): value "<<value<<" has to be in field ("<<positionX<<","<<positionY<<","<<current_z_<<")"<<std::endl;
+        //if Value can only be at one position, set it there
+        if(nPossiblePositionsForValue == 1 && !valueIsAlreadySet)
+        {
+          if(debug)
+            std::cout<<"Box check (box "<<field3x3_no_x<<","<<field3x3_no_y<<"): value "<<value<<" has to be in field ("<<positionX<<","<<positionY<<","<<current_z_<<")"<<std::endl;
 
-	  furtherWays_.back().nBoxCheckMatches++;
-	  furtherWays_.back().addWay(positionX, positionY, current_z_, value, 3);
+          furtherWays_.back().nBoxCheckMatches++;
+          furtherWays_.back().addWay(index(positionX, positionY), positionX, positionY, current_z_, value, 3);
 
-	  if(!recordFullFurtherWays)
-	  {
-	    testFields[index(positionX,positionY)]->setValue(value);
-	    restart = true;
-	    break;
-	  }
-	}
+          if(!recordFullFurtherWays)
+          {
+            testFields[index(positionX,positionY)]->setValue(value);
+            restart = true;
+            break;
+          }
+        }
       }
 
       if(restart)
-	break;
+        break;
     }
     if(restart)
       break;
@@ -409,6 +459,7 @@ void Sudoku::fixField(std::vector<std::shared_ptr<Field>> &testFields, int maxPo
 {
   int posXtoFix = 0;
   int posYtoFix = 0;
+  int fieldId = 0;
 
   if(fixFieldChooseRandomly)
   {
@@ -417,9 +468,9 @@ void Sudoku::fixField(std::vector<std::shared_ptr<Field>> &testFields, int maxPo
       int index = rand() % (squared_size_*squared_size_);
       if(testFields[index]->value() == 0)
       {
-	posXtoFix = testFields[index]->pos_x();
-	posYtoFix = testFields[index]->pos_y();
-	break;
+        posXtoFix = testFields[index]->pos_x();
+        posYtoFix = testFields[index]->pos_y();
+        break;
       }
     }
   }
@@ -429,29 +480,31 @@ void Sudoku::fixField(std::vector<std::shared_ptr<Field>> &testFields, int maxPo
     for(auto &field : testFields)
     {
       if(field->value() != 0)
-	continue;
+        continue;
 
       if(field->n_possible() == maxPossible)
       {
-	posXtoFix = field->pos_x();
-	posYtoFix = field->pos_y();
-	break;
+        posXtoFix = field->pos_x();
+        posYtoFix = field->pos_y();
+        fieldId = field->id();
+        break;
       }
     }
   }
 
-  int correctValue = fields_[index(posXtoFix, posYtoFix)]->value();
+  int correctValue = fields_[fieldId]->value();
 
-  testFields[index(posXtoFix, posYtoFix)]->setValue(correctValue);
-  testFields[index(posXtoFix, posYtoFix)]->setFixed(true);
+  testFields[fieldId]->setValue(correctValue);
+  testFields[fieldId]->setFixed(true);
 
   if(debug)
-    std::cout<<"Fix field ("<<posXtoFix<<","<<posYtoFix<<") to value "<<correctValue<<std::endl;
+    std::cout<<"Fix field ("<<posXtoFix<<","<<posYtoFix<<") (index "<<fieldId<<") to value "<<correctValue<<std::endl;
 }
 
-void Sudoku::FurtherWays::addWay(int posX, int posY, int posZ, int value, int reason)
+void Sudoku::FurtherWays::addWay(int id, int posX, int posY, int posZ, int value, int reason)
 {
   Way way;
+  way.id = id;
   way.posX = posX;
   way.posY = posY;
   way.posZ = posZ;
@@ -467,7 +520,8 @@ int Sudoku::FurtherWays::nMatches()
 
 bool Sudoku::FurtherWays::Way::operator<(const Way &rhs) const
 {
-  return posX < rhs.posX || (posX == rhs.posX && (posY < rhs.posY || (posY == rhs.posY && posZ < rhs.posZ)));
+  //return posX < rhs.posX || (posX == rhs.posX && (posY < rhs.posY || (posY == rhs.posY && posZ < rhs.posZ)));
+  return id < rhs.id;
 }
 
 void Sudoku::setFixed()
@@ -516,10 +570,10 @@ void Sudoku::setFixed()
     for(auto &field : testFields)
     {
       if(field->fixed())
-	continue;
+        continue;
 
       if(field->value() != 0)
-	continue;
+        continue;
 
       nFieldsNotSet++;
 
@@ -528,13 +582,13 @@ void Sudoku::setFixed()
 
       if(nPossible > maxPossible)
       {
-	maxPossible = nPossible;
-	//if(debug)std::cout<<" Field("<<field->pos()<<") has nPossible="<<nPossible<<" (new maximum)"<<std::endl;
+        maxPossible = nPossible;
+        //if(debug)std::cout<<" Field("<<field->pos()<<") has nPossible="<<nPossible<<" (new maximum)"<<std::endl;
       }
       if(nPossible < minPossible)
       {
-	minPossible = nPossible;
-	//if(debug)std::cout<<" Field("<<field->pos()<<") has nPossible="<<nPossible<<" (new minimum)"<<std::endl;
+        minPossible = nPossible;
+        //if(debug)std::cout<<" Field("<<field->pos()<<") has nPossible="<<nPossible<<" (new minimum)"<<std::endl;
       }
     }
 
@@ -554,23 +608,23 @@ void Sudoku::setFixed()
       //if there are fields that have only one possible value, set this value
       for(auto &field : testFields)
       {
-	if(field->value() == 0)
-	{
-	  if(field->n_possible() == 1)
-	  {
-	    if(debug)
-	      std::cout<<"Field check: field ("<<field->pos()<<") must be "<<field->onePossibleValue()<<""<<std::endl;
+        if(field->value() == 0)
+        {
+          if(field->n_possible() == 1)
+          {
+            if(debug)
+              std::cout<<"Field check: field ("<<field->pos()<<") must be "<<field->onePossibleValue()<<""<<std::endl;
 
-	    furtherWays_.back().nFieldCheckMatches++;
-	    furtherWays_.back().addWay(field->pos_x(), field->pos_y(), field->pos_z(), field->onePossibleValue());
+            furtherWays_.back().nFieldCheckMatches++;
+            furtherWays_.back().addWay(field->id(), field->pos_x(), field->pos_y(), field->pos_z(), field->onePossibleValue());
 
-	    if(!recordFullFurtherWays)
-	      field->setValue(field->onePossibleValue());
-	  }
-	}
+            if(!recordFullFurtherWays)
+              field->setValue(field->onePossibleValue());
+          }
+        }
       }
       if(!recordFullFurtherWays)
-	continue;
+        continue;
     }
     restart = rowCheck(furtherWays_, testFields, recordFullFurtherWays, debug);
 
@@ -593,30 +647,30 @@ void Sudoku::setFixed()
 
       if(debug)
       {
-	std::cout<<nPossibleFurtherWays<<" possible further ways:"<<std::endl
-	  <<furtherWays_.back().nFieldCheckMatches<<" field check matches"<<std::endl
-	  <<furtherWays_.back().nRowCheckMatches<<" row check matches"<<std::endl
-	  <<furtherWays_.back().nColumnCheckMatches<<" column check matches"<<std::endl
-	  <<furtherWays_.back().nBoxCheckMatches<<" box check matches"<<std::endl;
+        std::cout<<nPossibleFurtherWays<<" possible further ways:"<<std::endl
+          <<furtherWays_.back().nFieldCheckMatches<<" field check matches"<<std::endl
+          <<furtherWays_.back().nRowCheckMatches<<" row check matches"<<std::endl
+          <<furtherWays_.back().nColumnCheckMatches<<" column check matches"<<std::endl
+          <<furtherWays_.back().nBoxCheckMatches<<" box check matches"<<std::endl;
       }
 
       if(nPossibleFurtherWays > 0)
       {
-	//choose random possible action to do
-	int randomIndex = rand() % nPossibleFurtherWays;
+        //choose random possible action to do
+        int randomIndex = rand() % nPossibleFurtherWays;
 
-	std::set<FurtherWays::Way>::iterator wayIter = furtherWays_.back().ways.begin();
-	for(int i=0; i<randomIndex; i++)
-	  wayIter++;
+        std::set<FurtherWays::Way>::iterator wayIter = furtherWays_.back().ways.begin();
+        for(int i=0; i<randomIndex; i++)
+          wayIter++;
 
-	FurtherWays::Way way = (*wayIter);
+        FurtherWays::Way way = (*wayIter);
 
-	if(debug)
-	  std::cout<<"set field ("<<way.posX<<","<<way.posY<<","<<way.posZ<<") to value "<<way.value<<std::endl;
-	current_z_ = way.posZ;
+        if(debug)
+          std::cout<<"set field ("<<way.posX<<","<<way.posY<<","<<way.posZ<<") to value "<<way.value<<std::endl;
+        current_z_ = way.posZ;
 
-	testFields[index(way.posX,way.posY)]->setValue(way.value);
-	continue;
+        testFields[index(way.posX,way.posY)]->setValue(way.value);
+        continue;
       }
     }
 
@@ -654,10 +708,10 @@ void Sudoku::setFixed()
     for(auto &furtherWay : furtherWays_)
     {
       if(debug)
-	std::cout<<furtherWay.nMatches()<<" ";
+        std::cout<<furtherWay.nMatches()<<" ";
 
       if(i < 25)
-	s<<furtherWay.nMatches()<<"_";
+        s<<furtherWay.nMatches()<<"_";
       i++;
     }
     if(debug)
@@ -674,7 +728,6 @@ void Sudoku::setFixed()
   std::chrono::milliseconds duration = std::chrono::duration_cast<std::chrono::milliseconds>(tEnd - tBegin);
   std::cout<<"Duration: "<<duration.count()<<" ms"<<std::endl;
 }
-
 
 void Sudoku::eraseNonFixed()
 {
@@ -727,10 +780,10 @@ void Sudoku::solveExisting()
     for(auto &field : fields_)
     {
       if(field->fixed())
-	continue;
+        continue;
 
       if(field->value() != 0)
-	continue;
+        continue;
 
       nFieldsNotSet++;
 
@@ -739,13 +792,13 @@ void Sudoku::solveExisting()
 
       if(nPossible > maxPossible)
       {
-	maxPossible = nPossible;
-	//if(debug)std::cout<<" Field("<<field->pos()<<") has nPossible="<<nPossible<<" (new maximum)"<<std::endl;
+        maxPossible = nPossible;
+        //if(debug)std::cout<<" Field("<<field->pos()<<") has nPossible="<<nPossible<<" (new maximum)"<<std::endl;
       }
       if(nPossible < minPossible)
       {
-	minPossible = nPossible;
-	//if(debug)std::cout<<" Field("<<field->pos()<<") has nPossible="<<nPossible<<" (new minimum)"<<std::endl;
+        minPossible = nPossible;
+        //if(debug)std::cout<<" Field("<<field->pos()<<") has nPossible="<<nPossible<<" (new minimum)"<<std::endl;
       }
     }
 
@@ -765,23 +818,23 @@ void Sudoku::solveExisting()
       //if there are fields that have only one possible value, set this value
       for(auto &field : fields_)
       {
-	if(field->value() == 0)
-	{
-	  if(field->n_possible() == 1)
-	  {
-	    if(debug)
-	      std::cout<<"Field check: field ("<<field->pos()<<") must be "<<field->onePossibleValue()<<""<<std::endl;
+        if(field->value() == 0)
+        {
+          if(field->n_possible() == 1)
+          {
+            if(debug)
+              std::cout<<"Field check: field ("<<field->pos()<<") must be "<<field->onePossibleValue()<<""<<std::endl;
 
-	    furtherWays_.back().nFieldCheckMatches++;
-	    furtherWays_.back().addWay(field->pos_x(), field->pos_y(), field->pos_z(), field->onePossibleValue());
+            furtherWays_.back().nFieldCheckMatches++;
+            furtherWays_.back().addWay(field->id(), field->pos_x(), field->pos_y(), field->pos_z(), field->onePossibleValue());
 
-	    if(!recordFullFurtherWays)
-	      field->setValue(field->onePossibleValue());
-	  }
-	}
+            if(!recordFullFurtherWays)
+              field->setValue(field->onePossibleValue());
+          }
+        }
       }
       if(!recordFullFurtherWays)
-	continue;
+        continue;
     }
     restart = rowCheck(furtherWays_, fields_, recordFullFurtherWays, debug);
 
@@ -804,67 +857,67 @@ void Sudoku::solveExisting()
 
       if(debug)
       {
-	std::cout<<nPossibleFurtherWays<<" possible further ways:"<<std::endl
-	  <<furtherWays_.back().nFieldCheckMatches<<" field check matches"<<std::endl
-	  <<furtherWays_.back().nRowCheckMatches<<" row check matches"<<std::endl
-	  <<furtherWays_.back().nColumnCheckMatches<<" column check matches"<<std::endl
-	  <<furtherWays_.back().nBoxCheckMatches<<" box check matches"<<std::endl;
+        std::cout<<nPossibleFurtherWays<<" possible further ways:"<<std::endl
+          <<furtherWays_.back().nFieldCheckMatches<<" field check matches"<<std::endl
+          <<furtherWays_.back().nRowCheckMatches<<" row check matches"<<std::endl
+          <<furtherWays_.back().nColumnCheckMatches<<" column check matches"<<std::endl
+          <<furtherWays_.back().nBoxCheckMatches<<" box check matches"<<std::endl;
       }
 
       if(nPossibleFurtherWays > 0)
       {
-	//choose random possible action to do
-	int randomIndex = rand() % nPossibleFurtherWays;
+        //choose random possible action to do
+        int randomIndex = rand() % nPossibleFurtherWays;
 
-	std::set<FurtherWays::Way>::iterator wayIter = furtherWays_.back().ways.begin();
-	for(int i=0; i<randomIndex; i++)
-	  wayIter++;
+        std::set<FurtherWays::Way>::iterator wayIter = furtherWays_.back().ways.begin();
+        for(int i=0; i<randomIndex; i++)
+          wayIter++;
 
-	FurtherWays::Way way = (*wayIter);
+        FurtherWays::Way way = (*wayIter);
 
-	if(debug)
-	  std::cout<<"set field ("<<way.posX<<","<<way.posY<<","<<way.posZ<<") to value "<<way.value<<std::endl;
+        if(debug)
+          std::cout<<"set field ("<<way.posX<<","<<way.posY<<","<<way.posZ<<") to value "<<way.value<<std::endl;
 
-	switch(way.reason)
-	{
-	  case 0: //field
-	    solvingHints<<"Betrachte "<<(way.posZ? "Rauten" : "Kreise")<<", Feld ("<<way.posY+1<<","<<way.posX+1<<"). Hier kann nur "<<way.value<<" sein. ";
-	    break;
-	  case 1: //row
-	    solvingHints<<"Betrachte "<<(way.posZ? "Rauten" : "Kreise")<<", Wert "<<way.value<<" in Zeile "<<way.posY+1<<". ";
-	    break;
-	  case 2: //column
-	    solvingHints<<"Betrachte "<<(way.posZ? "Rauten" : "Kreise")<<", Wert "<<way.value<<" in Spalte "<<way.posX+1<<". ";
-	    break;
-	  case 3: //box
+        switch(way.reason)
+        {
+          case 0: //field
+            solvingHints<<"Betrachte "<<(way.posZ? "Rauten" : "Kreise")<<", Feld ("<<way.posY+1<<","<<way.posX+1<<"). Hier kann nur "<<way.value<<" sein. ";
+            break;
+          case 1: //row
+            solvingHints<<"Betrachte "<<(way.posZ? "Rauten" : "Kreise")<<", Wert "<<way.value<<" in Zeile "<<way.posY+1<<". ";
+            break;
+          case 2: //column
+            solvingHints<<"Betrachte "<<(way.posZ? "Rauten" : "Kreise")<<", Wert "<<way.value<<" in Spalte "<<way.posX+1<<". ";
+            break;
+          case 3: //box
 
-	    solvingHints<<"Betrachte "<<(way.posZ? "Rauten" : "Kreise")<<", Wert "<<way.value<<" im "<<size_<<"x"<<size_<<"-Quadrat";
+            solvingHints<<"Betrachte "<<(way.posZ? "Rauten" : "Kreise")<<", Wert "<<way.value<<" im "<<size_<<"x"<<size_<<"-Quadrat";
 
-	    if(int(way.posX / size_) == 0)
-	      solvingHints<<" links";
-	    else if(int(way.posX / size_) == 1)
-	      solvingHints<<" Mitte";
-	    else
-	      solvingHints<<" rechts";
+            if(int(way.posX / size_) == 0)
+              solvingHints<<" links";
+            else if(int(way.posX / size_) == 1)
+              solvingHints<<" Mitte";
+            else
+              solvingHints<<" rechts";
 
-	    if(int(way.posY / size_) == 0)
-	      solvingHints<<" oben";
-	    else if(int(way.posY / size_) == 1 && !(int(way.posX / size_) == 1))
-	      solvingHints<<" Mitte";
-	    else if(int(way.posY / size_) == 2)
-	      solvingHints<<" unten";
-	    solvingHints<<". ";
+            if(int(way.posY / size_) == 0)
+              solvingHints<<" oben";
+            else if(int(way.posY / size_) == 1 && !(int(way.posX / size_) == 1))
+              solvingHints<<" Mitte";
+            else if(int(way.posY / size_) == 2)
+              solvingHints<<" unten";
+            solvingHints<<". ";
 
-	    break;
-	}
+            break;
+        }
 
-	solvingHints<<"Schreibe "<<way.value<<" in Feld ("<<way.posY+1<<","<<way.posX+1<<")."<<std::endl;
+        solvingHints<<"Schreibe "<<way.value<<" in Feld ("<<way.posY+1<<","<<way.posX+1<<")."<<std::endl;
 
 
-	current_z_ = way.posZ;
+        current_z_ = way.posZ;
 
-	fields_[index(way.posX,way.posY)]->setValue(way.value);
-	continue;
+        fields_[index(way.posX,way.posY)]->setValue(way.value);
+        continue;
       }
     }
 
@@ -888,10 +941,10 @@ void Sudoku::solveExisting()
       int i=0;
       for(auto &furtherWay : furtherWays_)
       {
-	std::cout<<furtherWay.nMatches()<<" ";
-	if(i < 25)
-	  s<<furtherWay.nMatches()<<"_";
-	i++;
+        std::cout<<furtherWay.nMatches()<<" ";
+        if(i < 25)
+          s<<furtherWay.nMatches()<<"_";
+        i++;
       }
       std::cout<<std::endl;
 
@@ -917,7 +970,7 @@ void Sudoku::solveExisting()
 
 }
 
-void Sudoku::print(int target, std::string filename)
+void Sudoku::print(int target, std::string filename, int mode)
 {
   if(filename.empty())
     filename = filename_;
@@ -935,26 +988,42 @@ void Sudoku::print(int target, std::string filename)
     s<<std::endl;
   }
 
-  if(target == 0)
+  if(target == 0)   //stdio
+  {
     std::cout<<s.str();
-  else
+  }
+  else if(target == 1)   // file
   {
     std::ofstream file(filename.c_str(), std::ios::out | std::ios::app);
     file<<s.str();
     file.close();
   }
+  else if(target == 2)    //svg
+  {
+    std::ofstream file(filename.c_str(), std::ios::out | std::ios::trunc);
+    double width = 30*squared_size_;
+    double height = 30*squared_size_;
+    file<<"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg width=\""<<width<<"\" height=\""<<height<<"\">\n<g>\n";
+    file.close();
+  }
 
-  printFields(fields_, target, filename);
+  printFields(fields_, target, filename, mode);
 
-  if(target != 0)
+  if(target == 1)
   {
     std::ofstream file(filename.c_str(), std::ios::out | std::ios::app);
     file<<solutionHints_;
     file.close();
   }
+  else if(target == 2)    //svg
+  {
+    std::ofstream file(filename.c_str(), std::ios::out | std::ios::app);
+    file<<"\n</g>\n</svg>\n";
+    file.close();
+  }
 }
 
-void Sudoku::printFields(std::vector<std::shared_ptr<Field>> &fields, int target, std::string filename)
+void Sudoku::printFields(std::vector<std::shared_ptr<Field>> &fields, int target, std::string filename, int mode)
 {
   std::stringstream s;
 
@@ -963,7 +1032,7 @@ void Sudoku::printFields(std::vector<std::shared_ptr<Field>> &fields, int target
   {
     if(x % size_ == 0)
       s<<" | ";
-    s<<" "<<std::setw(2)<<x;
+    s<<" "<<std::setw(3)<<x;
   }
   s<<"|"<<std::endl;
   for (int y = 0; y < squared_size_; y++)
@@ -975,7 +1044,7 @@ void Sudoku::printFields(std::vector<std::shared_ptr<Field>> &fields, int target
       {
         if(x % size_ == 0)
           s<<"-+-";
-        s<<"---";
+        s<<"----";
       }
       s<<"+"<<std::endl;
     }
@@ -986,9 +1055,35 @@ void Sudoku::printFields(std::vector<std::shared_ptr<Field>> &fields, int target
       if(x % size_ == 0)
         s<<" | ";
       if(fields[index(x,y)]->fixed())
-        s<<std::setw(2)<<fields[index(x,y)]->value()<<"*";
+      {
+        if(mode == 0)
+        {
+          s<<std::setw(3)<<fields[index(x,y)]->value()<<"*";
+        }
+        else if(mode == 1)
+        {
+          s<<std::setw(3)<<fields[index(x,y)]->max_value()<<"*";
+        }
+        else if(mode == 2)
+        {
+          s<<std::setw(4)<<index(x,y);
+        }
+      }
       else
-        s<<" "<<std::setw(2)<<fields[index(x,y)]->value();
+      {
+        if(mode == 0)
+        {
+          s<<" "<<std::setw(3)<<fields[index(x,y)]->value();
+        }
+        else if(mode == 1)
+        {
+          s<<" "<<std::setw(3)<<fields[index(x,y)]->max_value();
+        }
+        else if(mode == 2)
+        {
+          s<<std::setw(4)<<index(x,y);
+        }
+      }
       //s<<"["<<fields[index(x,y)]->n_possible()<<"]";
 
     }
@@ -1000,13 +1095,13 @@ void Sudoku::printFields(std::vector<std::shared_ptr<Field>> &fields, int target
   {
     if(x % size_ == 0)
       s<<"-+-";
-    s<<"---";
+    s<<"----";
   }
   s<<"+"<<std::endl<<std::endl;
 
   if(target == 0)
     std::cout<<s.str();
-  else
+  else if(target == 1)
   {
     if(filename.empty())
       filename = filename_;
@@ -1015,6 +1110,70 @@ void Sudoku::printFields(std::vector<std::shared_ptr<Field>> &fields, int target
     if(!file.is_open())
       std::cout<<"Error writing file \""<<filename<<"\"."<<std::endl;
     file<<s.str();
+    file.close();
+  }
+  else if (target == 2)
+  {
+    if(filename.empty())
+      filename = filename_;
+    std::cout<<"Write file \""<<filename<<"\""<<std::endl;
+    std::ofstream file(filename.c_str(), std::ios::out | std::ios::app);
+    if(!file.is_open())
+      std::cout<<"Error writing file \""<<filename<<"\"."<<std::endl;
+
+    int size = 30;
+    int x_offset = 0;
+    int y_offset = 0;
+
+    // numbers and squares
+    for (int y = 0; y < squared_size_; y++)
+    {
+      for(int x = 0; x < squared_size_; x++)
+      {
+        file << " <rect\n"
+           <<"\ty=\""<<y_offset+y*size<<"\"\n"
+           <<"\tx=\""<<x_offset+x*size<<"\"\n"
+           <<"\theight=\""<<size<<"\"\n"
+           <<"\twidth=\""<<size<<"\"\n"
+           <<"\tstyle=\"opacity:1;fill:none;fill-opacity:1;stroke:#808080;stroke-width:0.5;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1\" />\n";
+
+        if((mode == 0 && fields[index(x,y)]->fixed()) || (mode == 3))
+        {
+          double xpos = (fields[index(x,y)]->value() >= 10? x_offset+2 : x_offset+8) + (x*size);
+
+         file << "<text\n"
+           <<"\txml:space=\"preserve\"\n"
+           <<"\tstyle=\"font-style:normal;font-weight:normal;font-size:20px;line-height:125%;font-family:sans-serif;text-align:start;letter-spacing:-2px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1\"\n"
+           <<"\tx=\""<<xpos<<"\"\n"
+           <<"\ty=\""<<y_offset-8+(y+1)*size<<"\"\n"
+           <<"\tsodipodi:linespacing=\"100%\"><tspan\n"
+             <<"\t\tsodipodi:role=\"line\"\n"
+             <<"\t\tx=\""<<xpos<<"\"\n"
+             <<"\t\ty=\""<<y_offset-8+(y+1)*size<<"\">"<<fields[index(x,y)]->value()<<"</tspan></text>\n\n";
+        }
+      }
+    }
+
+    //thicker lines
+    file << "<g>\n";
+    //horizontal
+    for (int y = 0; y <= squared_size_; y+=size_)
+    {
+      file << "<path\n"
+         <<"\tstyle=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none\"\n"
+         <<"\td=\"m "<<x_offset<<","<<y_offset+y*size<<" "<<size*squared_size_<<",0\" />\n";
+    }
+
+    // vertical
+    for (int x = 0; x <= squared_size_; x+=size_)
+    {
+      file << "<path\n"
+         <<"\tstyle=\"fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none\"\n"
+         <<"\td=\"m "<<x_offset+x*size<<","<<y_offset<<" 0,"<<size*squared_size_<<"\" />\n";
+    }
+
+    file << "</g>\n";
+
     file.close();
   }
 }
