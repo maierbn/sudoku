@@ -28,8 +28,16 @@ CMakeFiles/sudoku.dir/main.cpp.o
  /store/Programmierung/sudoku/interleaved_sudoku.h
  /store/Programmierung/sudoku/main.cpp
  /store/Programmierung/sudoku/sudoku.h
+ /store/Programmierung/sudoku/sudoku_chain.h
 CMakeFiles/sudoku.dir/sudoku.cpp.o
  /store/Programmierung/sudoku/compare_fields.h
  /store/Programmierung/sudoku/field.h
  /store/Programmierung/sudoku/sudoku.cpp
  /store/Programmierung/sudoku/sudoku.h
+CMakeFiles/sudoku.dir/sudoku_chain.cpp.o
+ /store/Programmierung/sudoku/chained_sudoku.h
+ /store/Programmierung/sudoku/compare_fields.h
+ /store/Programmierung/sudoku/field.h
+ /store/Programmierung/sudoku/sudoku.h
+ /store/Programmierung/sudoku/sudoku_chain.cpp
+ /store/Programmierung/sudoku/sudoku_chain.h

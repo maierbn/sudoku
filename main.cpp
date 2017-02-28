@@ -1,14 +1,20 @@
 #include <iostream>
 
 #include "sudoku.h"
+#include "sudoku_chain.h"
 
 #include "interleaved_sudoku.h"
 #include "chained_sudoku.h"
 
 int main(int argc, char **argv)
 {
+
+  SudokuChain sudokuChain;
+  sudokuChain.generate();
+
+  exit(0);
   // create sudoku
-#if 1
+#if 0
   Sudoku sudoku(3);
 
   sudoku.set(0, 5, 3, true);
@@ -22,31 +28,33 @@ int main(int argc, char **argv)
   sudoku.set(2, 7, 7, true);
 
   sudoku.createSolution();
-  sudoku.print(2, "E_solution.svg", 3);
+  sudoku.print(Sudoku::PrintTarget::svg_file, "E_solution.svg", Sudoku::PrintMode::solved);
 
   //sudoku.permuteNumbers();
-  sudoku.setOneFixed(0, 5, 3, false);
-  sudoku.setOneFixed(1, 5, 6, false);
-  sudoku.setOneFixed(2, 5, 9, false);
-  sudoku.setOneFixed(0, 6, 2, false);
-  sudoku.setOneFixed(1, 6, 1, false);
-  sudoku.setOneFixed(2, 6, 8, false);
-  sudoku.setOneFixed(0, 7, 5, false);
-  sudoku.setOneFixed(1, 7, 4, false);
-  sudoku.setOneFixed(2, 7, 7, false);
+  sudoku.setOneFixed(0, 5, false);
+  sudoku.setOneFixed(1, 5, false);
+  sudoku.setOneFixed(2, 5, false);
+  sudoku.setOneFixed(0, 6, false);
+  sudoku.setOneFixed(1, 6, false);
+  sudoku.setOneFixed(2, 6, false);
+  sudoku.setOneFixed(0, 7, false);
+  sudoku.setOneFixed(1, 7, false);
+  sudoku.setOneFixed(2, 7, false);
   sudoku.setFixed();
-  sudoku.print(2, "EE.svg", 0);
+  sudoku.print(Sudoku::PrintTarget::svg_file, "EE.svg", Sudoku::PrintMode::all_fixed);
 
   sudoku.eraseNonFixed();
   sudoku.solveExisting();
-  sudoku.print(2, "E.svg", 0);
+  sudoku.print(Sudoku::PrintTarget::svg_file, "E.svg", Sudoku::PrintMode::all_fixed);
 
   exit(0);
 #endif
+
+#if 0
   ChainedSudoku chainedSudoku;
 
-  chainedSudoku.print(0, "", 1);
-  chainedSudoku.print(0, "", 2);
+  chainedSudoku.print(Sudoku::PrintTarget::cout, "", Sudoku::PrintMode::max_value);
+  chainedSudoku.print(Sudoku::PrintTarget::cout, "", Sudoku::PrintMode::index);
 
   chainedSudoku.set(0,5);
   chainedSudoku.set(4,3);
@@ -100,15 +108,15 @@ int main(int argc, char **argv)
   chainedSudoku.setFixed();
   chainedSudoku.print();
 
-  chainedSudoku.print(2, "sudoku.svg", 0);
+  chainedSudoku.print(Sudoku::PrintTarget::svg_file, "sudoku.svg", Sudoku::PrintMode::all_fixed);
 
   chainedSudoku.eraseNonFixed();
   chainedSudoku.solveExisting();
   chainedSudoku.print();
 
-  chainedSudoku.print(2, "sudoku_solution.svg", 3);
+  chainedSudoku.print(Sudoku::PrintTarget::svg_file, "sudoku_solution.svg", Sudoku::PrintMode::solved);
 
-
+#endif
   //
   //sudoku.print();
 
@@ -170,10 +178,10 @@ int main(int argc, char **argv)
   InterleavedSudoku isudoku(4);
   isudoku.createSolution();
   //isudoku.print();
-  isudoku.setFixed();
+  isudoku.fixSomeFieldsToGetASolvableSudoku();
   isudoku.eraseNonFixed();
   isudoku.solveExisting();
-  isudoku.print(1);
+  isudoku.print(Sudoku::PrintTarget::text_file);
   //isudoku.permuteNumbers();
   //isudoku.print();
 

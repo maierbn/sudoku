@@ -61,6 +61,8 @@
 		<Unit filename="sudoku.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="sudoku_chain.cpp" />
+		<Unit filename="sudoku_chain.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />

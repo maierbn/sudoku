@@ -1,0 +1,207 @@
+Möglicher Lösungsweg:
+Betrachte Sudoku 1, Wert 3 in Zeile 4. Schreibe 3 in Feld Zeile 4 Spalte 1.
+Betrachte Sudoku 2, Wert 7 in Zeile 1. Schreibe 7 in Feld Zeile 1 Spalte 6.
+Betrachte Sudoku 2, Wert 8 im 2x2-Quadrat rechts oben. Schreibe 8 in Feld Zeile 1 Spalte 8.
+Betrachte Sudoku 2, Feld (1,9). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 1 Spalte 9.
+Betrachte Sudoku 2, Wert 6 in Zeile 2. Schreibe 6 in Feld Zeile 2 Spalte 6.
+Betrachte Sudoku 2, Wert 8 in Zeile 3. Schreibe 8 in Feld Zeile 3 Spalte 1.
+Betrachte Sudoku 2, Wert 6 in Zeile 3. Schreibe 6 in Feld Zeile 3 Spalte 2.
+Betrachte Sudoku 2, Wert 2 in Spalte 5. Schreibe 2 in Feld Zeile 3 Spalte 5.
+Betrachte Sudoku 3, Wert 1 in Zeile 7. Schreibe 1 in Feld Zeile 7 Spalte 1.
+Betrachte Sudoku 2, Feld (3,9). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 3 Spalte 9.
+Betrachte Sudoku 2, Feld (2,9). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 2 Spalte 9.
+Betrachte Sudoku 2, Feld (3,7). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 3 Spalte 7.
+Betrachte Sudoku 2, Feld (2,8). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 2 Spalte 8.
+Betrachte Sudoku 2, Feld (2,4). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 2 Spalte 4.
+Betrachte Sudoku 1, Wert 4 in Zeile 4. Schreibe 4 in Feld Zeile 4 Spalte 2.
+Betrachte Sudoku 2, Feld (5,9). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 5 Spalte 9.
+Betrachte Sudoku 2, Feld (5,8). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 5 Spalte 8.
+Betrachte Sudoku 2, Feld (4,8). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 4 Spalte 8.
+Betrachte Sudoku 2, Feld (5,5). Hier kann nur 3 sein. Schreibe 3 in Feld Zeile 5 Spalte 5.
+Betrachte Sudoku 1, Wert 3 in Spalte 3. Schreibe 3 in Feld Zeile 1 Spalte 3.
+Betrachte Sudoku 1, Feld (3,3). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 3 Spalte 3.
+Betrachte Sudoku 1, Wert 4 in Zeile 2. Schreibe 4 in Feld Zeile 2 Spalte 4.
+Betrachte Sudoku 1, Feld (3,4). Hier kann nur 3 sein. Schreibe 3 in Feld Zeile 3 Spalte 4.
+Betrachte Sudoku 2, Feld (1,3). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 1 Spalte 3.
+Betrachte Sudoku 2, Feld (1,4). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 1 Spalte 4.
+Betrachte Sudoku 2, Wert 3 in Zeile 4. Schreibe 3 in Feld Zeile 4 Spalte 3.
+Betrachte Sudoku 2, Feld (6,9). Hier kann nur 3 sein. Schreibe 3 in Feld Zeile 6 Spalte 9.
+Betrachte Sudoku 2, Feld (7,3). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 7 Spalte 3.
+Betrachte Sudoku 2, Feld (6,3). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 6 Spalte 3.
+Betrachte Sudoku 2, Feld (5,3). Hier kann nur 8 sein. Schreibe 8 in Feld Zeile 5 Spalte 3.
+Betrachte Sudoku 2, Wert 8 im 2x2-Quadrat rechts Mitte. Schreibe 8 in Feld Zeile 4 Spalte 7.
+Betrachte Sudoku 2, Wert 1 in Zeile 5. Schreibe 1 in Feld Zeile 5 Spalte 6.
+Betrachte Sudoku 2, Feld (5,7). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 5 Spalte 7.
+Betrachte Sudoku 2, Feld (6,6). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 6 Spalte 6.
+Betrachte Sudoku 2, Feld (3,6). Hier kann nur 3 sein. Schreibe 3 in Feld Zeile 3 Spalte 6.
+Betrachte Sudoku 2, Feld (3,4). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 3 Spalte 4.
+Betrachte Sudoku 2, Wert 3 in Zeile 7. Schreibe 3 in Feld Zeile 7 Spalte 1.
+Betrachte Sudoku 2, Wert 9 in Zeile 7. Schreibe 9 in Feld Zeile 7 Spalte 5.
+Betrachte Sudoku 2, Feld (7,6). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 7 Spalte 6.
+Betrachte Sudoku 2, Feld (7,7). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 7 Spalte 7.
+Betrachte Sudoku 2, Feld (7,8). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 7 Spalte 8.
+Betrachte Sudoku 2, Wert 1 in Diagonale. Schreibe 1 in Feld Zeile 2 Spalte 2.
+Betrachte Sudoku 1, Feld (1,4). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 1 Spalte 4.
+Betrachte Sudoku 1, Feld (1,2). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 1 Spalte 2.
+Betrachte Sudoku 1, Feld (2,1). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 2 Spalte 1.
+Betrachte Sudoku 1, Feld (2,3). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 2 Spalte 3.
+Betrachte Sudoku 1, Feld (3,1). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 3 Spalte 1.
+Betrachte Sudoku 1, Feld (3,2). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 3 Spalte 2.
+Betrachte Sudoku 1, Feld (4,3). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 4 Spalte 3.
+Betrachte Sudoku 2, Feld (6,1). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 6 Spalte 1.
+Betrachte Sudoku 2, Feld (4,2). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 4 Spalte 2.
+Betrachte Sudoku 2, Feld (4,5). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 4 Spalte 5.
+Betrachte Sudoku 2, Feld (6,2). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 6 Spalte 2.
+Betrachte Sudoku 2, Feld (6,5). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 6 Spalte 5.
+Betrachte Sudoku 2, Feld (7,9). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 7 Spalte 9.
+Betrachte Sudoku 2, Feld (8,2). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 8 Spalte 2.
+Betrachte Sudoku 2, Feld (8,3). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 8 Spalte 3.
+Betrachte Sudoku 2, Wert 3 in Zeile 8. Schreibe 3 in Feld Zeile 8 Spalte 4.
+Betrachte Sudoku 2, Feld (8,5). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 8 Spalte 5.
+Betrachte Sudoku 2, Feld (8,1). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 8 Spalte 1.
+Betrachte Sudoku 2, Feld (8,6). Hier kann nur 8 sein. Schreibe 8 in Feld Zeile 8 Spalte 6.
+Betrachte Sudoku 2, Feld (8,7). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 8 Spalte 7.
+Betrachte Sudoku 2, Feld (8,8). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 8 Spalte 8.
+Betrachte Sudoku 2, Feld (9,1). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 9 Spalte 1.
+Betrachte Sudoku 2, Feld (9,2). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 9 Spalte 2.
+Betrachte Sudoku 2, Feld (9,4). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 9 Spalte 4.
+Betrachte Sudoku 2, Feld (9,5). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 9 Spalte 5.
+Betrachte Sudoku 2, Feld (9,7). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 9 Spalte 7.
+Betrachte Sudoku 2, Feld (9,9). Hier kann nur 8 sein. Schreibe 8 in Feld Zeile 9 Spalte 9.
+Betrachte Sudoku 3, Wert 8 in Zeile 1. Schreibe 8 in Feld Zeile 1 Spalte 7.
+Betrachte Sudoku 3, Wert 12 in Zeile 2. Schreibe 12 in Feld Zeile 2 Spalte 1.
+Betrachte Sudoku 3, Wert 13 in Spalte 3. Schreibe 13 in Feld Zeile 2 Spalte 3.
+Betrachte Sudoku 3, Wert 11 in Zeile 2. Schreibe 11 in Feld Zeile 2 Spalte 5.
+Betrachte Sudoku 3, Wert 10 im 2x2-Quadrat rechts oben. Schreibe 10 in Feld Zeile 2 Spalte 8.
+Betrachte Sudoku 3, Feld (3,8). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 3 Spalte 8.
+Betrachte Sudoku 3, Wert 12 in Spalte 9. Schreibe 12 in Feld Zeile 3 Spalte 9.
+Betrachte Sudoku 3, Wert 13 in Spalte 10. Schreibe 13 in Feld Zeile 3 Spalte 10.
+Betrachte Sudoku 3, Wert 3 in Zeile 3. Schreibe 3 in Feld Zeile 3 Spalte 16.
+Betrachte Sudoku 3, Wert 11 in Zeile 4. Schreibe 11 in Feld Zeile 4 Spalte 9.
+Betrachte Sudoku 3, Wert 8 in Zeile 5. Schreibe 8 in Feld Zeile 5 Spalte 2.
+Betrachte Sudoku 3, Wert 2 in Zeile 5. Schreibe 2 in Feld Zeile 5 Spalte 6.
+Betrachte Sudoku 3, Wert 3 in Zeile 5. Schreibe 3 in Feld Zeile 5 Spalte 8.
+Betrachte Sudoku 3, Wert 11 in Spalte 14. Schreibe 11 in Feld Zeile 5 Spalte 14.
+Betrachte Sudoku 3, Feld (5,16). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 5 Spalte 16.
+Betrachte Sudoku 3, Feld (5,15). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 5 Spalte 15.
+Betrachte Sudoku 3, Feld (5,13). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 5 Spalte 13.
+Betrachte Sudoku 3, Feld (5,4). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 5 Spalte 4.
+Betrachte Sudoku 3, Feld (5,7). Hier kann nur 13 sein. Schreibe 13 in Feld Zeile 5 Spalte 7.
+Betrachte Sudoku 3, Wert 14 in Zeile 6. Schreibe 14 in Feld Zeile 6 Spalte 4.
+Betrachte Sudoku 3, Wert 11 in Spalte 12. Schreibe 11 in Feld Zeile 6 Spalte 12.
+Betrachte Sudoku 3, Wert 1 in Zeile 6. Schreibe 1 in Feld Zeile 6 Spalte 16.
+Betrachte Sudoku 3, Feld (7,4). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 7 Spalte 4.
+Betrachte Sudoku 3, Wert 13 in Zeile 7. Schreibe 13 in Feld Zeile 7 Spalte 9.
+Betrachte Sudoku 3, Wert 2 in Zeile 7. Schreibe 2 in Feld Zeile 7 Spalte 12.
+Betrachte Sudoku 3, Feld (7,15). Hier kann nur 10 sein. Schreibe 10 in Feld Zeile 7 Spalte 15.
+Betrachte Sudoku 3, Wert 4 in Zeile 8. Schreibe 4 in Feld Zeile 8 Spalte 7.
+Betrachte Sudoku 3, Wert 1 in Zeile 8. Schreibe 1 in Feld Zeile 8 Spalte 8.
+Betrachte Sudoku 3, Feld (8,15). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 8 Spalte 15.
+Betrachte Sudoku 3, Feld (8,13). Hier kann nur 12 sein. Schreibe 12 in Feld Zeile 8 Spalte 13.
+Betrachte Sudoku 3, Feld (8,16). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 8 Spalte 16.
+Betrachte Sudoku 3, Wert 5 in Zeile 9. Schreibe 5 in Feld Zeile 9 Spalte 7.
+Betrachte Sudoku 3, Wert 5 in Zeile 3. Schreibe 5 in Feld Zeile 3 Spalte 5.
+Betrachte Sudoku 3, Wert 10 in Spalte 14. Schreibe 10 in Feld Zeile 9 Spalte 14.
+Betrachte Sudoku 3, Feld (9,15). Hier kann nur 8 sein. Schreibe 8 in Feld Zeile 9 Spalte 15.
+Betrachte Sudoku 3, Feld (9,16). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 9 Spalte 16.
+Betrachte Sudoku 3, Feld (9,9). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 9 Spalte 9.
+Betrachte Sudoku 3, Wert 9 in Zeile 10. Schreibe 9 in Feld Zeile 10 Spalte 2.
+Betrachte Sudoku 3, Wert 13 in Zeile 10. Schreibe 13 in Feld Zeile 10 Spalte 8.
+Betrachte Sudoku 3, Wert 5 in Zeile 10. Schreibe 5 in Feld Zeile 10 Spalte 12.
+Betrachte Sudoku 3, Wert 4 im 2x2-Quadrat rechts. Schreibe 4 in Feld Zeile 10 Spalte 14.
+Betrachte Sudoku 3, Feld (3,14). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 3 Spalte 14.
+Betrachte Sudoku 3, Feld (2,14). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 2 Spalte 14.
+Betrachte Sudoku 3, Feld (10,15). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 10 Spalte 15.
+Betrachte Sudoku 3, Feld (10,16). Hier kann nur 12 sein. Schreibe 12 in Feld Zeile 10 Spalte 16.
+Betrachte Sudoku 3, Feld (10,6). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 10 Spalte 6.
+Betrachte Sudoku 3, Wert 4 in Zeile 11. Schreibe 4 in Feld Zeile 11 Spalte 2.
+Betrachte Sudoku 3, Wert 3 in Zeile 11. Schreibe 3 in Feld Zeile 11 Spalte 9.
+Betrachte Sudoku 3, Feld (8,9). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 8 Spalte 9.
+Betrachte Sudoku 3, Feld (8,6). Hier kann nur 10 sein. Schreibe 10 in Feld Zeile 8 Spalte 6.
+Betrachte Sudoku 3, Feld (8,10). Hier kann nur 3 sein. Schreibe 3 in Feld Zeile 8 Spalte 10.
+Betrachte Sudoku 3, Wert 10 in Zeile 11. Schreibe 10 in Feld Zeile 11 Spalte 12.
+Betrachte Sudoku 3, Feld (12,4). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 12 Spalte 4.
+Betrachte Sudoku 3, Wert 12 in Zeile 12. Schreibe 12 in Feld Zeile 12 Spalte 7.
+Betrachte Sudoku 3, Wert 12 in Zeile 7. Schreibe 12 in Feld Zeile 7 Spalte 6.
+Betrachte Sudoku 3, Feld (7,7). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 7 Spalte 7.
+Betrachte Sudoku 3, Feld (6,6). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 6 Spalte 6.
+Betrachte Sudoku 3, Feld (6,7). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 6 Spalte 7.
+Betrachte Sudoku 3, Wert 7 in Spalte 11. Schreibe 7 in Feld Zeile 6 Spalte 11.
+Betrachte Sudoku 3, Feld (6,9). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 6 Spalte 9.
+Betrachte Sudoku 3, Feld (1,9). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 1 Spalte 9.
+Betrachte Sudoku 3, Feld (1,5). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 1 Spalte 5.
+Betrachte Sudoku 3, Wert 7 in Spalte 4. Schreibe 7 in Feld Zeile 2 Spalte 4.
+Betrachte Sudoku 3, Feld (6,10). Hier kann nur 10 sein. Schreibe 10 in Feld Zeile 6 Spalte 10.
+Betrachte Sudoku 3, Feld (7,11). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 7 Spalte 11.
+Betrachte Sudoku 3, Feld (3,11). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 3 Spalte 11.
+Betrachte Sudoku 3, Wert 4 im 2x2-Quadrat rechts Mitte. Schreibe 4 in Feld Zeile 3 Spalte 12.
+Betrachte Sudoku 3, Wert 4 in Spalte 13. Schreibe 4 in Feld Zeile 2 Spalte 13.
+Betrachte Sudoku 3, Feld (3,13). Hier kann nur 14 sein. Schreibe 14 in Feld Zeile 3 Spalte 13.
+Betrachte Sudoku 3, Feld (2,16). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 2 Spalte 16.
+Betrachte Sudoku 3, Feld (1,16). Hier kann nur 10 sein. Schreibe 10 in Feld Zeile 1 Spalte 16.
+Betrachte Sudoku 3, Feld (1,11). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 1 Spalte 11.
+Betrachte Sudoku 3, Feld (1,10). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 1 Spalte 10.
+Betrachte Sudoku 3, Feld (3,7). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 3 Spalte 7.
+Betrachte Sudoku 3, Feld (4,5). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 4 Spalte 5.
+Betrachte Sudoku 3, Feld (4,11). Hier kann nur 10 sein. Schreibe 10 in Feld Zeile 4 Spalte 11.
+Betrachte Sudoku 3, Feld (4,13). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 4 Spalte 13.
+Betrachte Sudoku 3, Feld (10,9). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 10 Spalte 9.
+Betrachte Sudoku 3, Feld (10,3). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 10 Spalte 3.
+Betrachte Sudoku 3, Feld (11,5). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 11 Spalte 5.
+Betrachte Sudoku 3, Feld (11,7). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 11 Spalte 7.
+Betrachte Sudoku 3, Feld (11,8). Hier kann nur 8 sein. Schreibe 8 in Feld Zeile 11 Spalte 8.
+Betrachte Sudoku 3, Feld (11,6). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 11 Spalte 6.
+Betrachte Sudoku 3, Feld (12,2). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 12 Spalte 2.
+Betrachte Sudoku 3, Feld (2,2). Hier kann nur 14 sein. Schreibe 14 in Feld Zeile 2 Spalte 2.
+Betrachte Sudoku 3, Feld (2,7). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 2 Spalte 7.
+Betrachte Sudoku 3, Feld (2,10). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 2 Spalte 10.
+Betrachte Sudoku 3, Feld (4,2). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 4 Spalte 2.
+Betrachte Sudoku 3, Feld (4,4). Hier kann nur 3 sein. Schreibe 3 in Feld Zeile 4 Spalte 4.
+Betrachte Sudoku 3, Feld (4,3). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 4 Spalte 3.
+Betrachte Sudoku 3, Feld (4,7). Hier kann nur 14 sein. Schreibe 14 in Feld Zeile 4 Spalte 7.
+Betrachte Sudoku 3, Feld (4,10). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 4 Spalte 10.
+Betrachte Sudoku 3, Feld (9,2). Hier kann nur 11 sein. Schreibe 11 in Feld Zeile 9 Spalte 2.
+Betrachte Sudoku 3, Feld (9,3). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 9 Spalte 3.
+Betrachte Sudoku 3, Feld (12,3). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 12 Spalte 3.
+Betrachte Sudoku 3, Feld (12,9). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 12 Spalte 9.
+Betrachte Sudoku 3, Feld (12,12). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 12 Spalte 12.
+Betrachte Sudoku 3, Feld (12,16). Hier kann nur 14 sein. Schreibe 14 in Feld Zeile 12 Spalte 16.
+Betrachte Sudoku 3, Feld (13,1). Hier kann nur 14 sein. Schreibe 14 in Feld Zeile 13 Spalte 1.
+Betrachte Sudoku 3, Wert 3 in Spalte 3. Schreibe 3 in Feld Zeile 13 Spalte 3.
+Betrachte Sudoku 3, Feld (13,4). Hier kann nur 11 sein. Schreibe 11 in Feld Zeile 13 Spalte 4.
+Betrachte Sudoku 3, Wert 11 in Zeile 8. Schreibe 11 in Feld Zeile 8 Spalte 3.
+Betrachte Sudoku 3, Feld (8,4). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 8 Spalte 4.
+Betrachte Sudoku 3, Wert 5 im 2x2-Quadrat Mitte oben. Schreibe 5 in Feld Zeile 1 Spalte 3.
+Betrachte Sudoku 3, Feld (1,4). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 1 Spalte 4.
+Betrachte Sudoku 3, Feld (13,5). Hier kann nur 13 sein. Schreibe 13 in Feld Zeile 13 Spalte 5.
+Betrachte Sudoku 3, Feld (13,6). Hier kann nur 8 sein. Schreibe 8 in Feld Zeile 13 Spalte 6.
+Betrachte Sudoku 3, Feld (13,10). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 13 Spalte 10.
+Betrachte Sudoku 3, Feld (13,11). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 13 Spalte 11.
+Betrachte Sudoku 3, Feld (13,12). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 13 Spalte 12.
+Betrachte Sudoku 3, Feld (13,13). Hier kann nur 10 sein. Schreibe 10 in Feld Zeile 13 Spalte 13.
+Betrachte Sudoku 3, Wert 5 in Zeile 14. Schreibe 5 in Feld Zeile 14 Spalte 2.
+Betrachte Sudoku 3, Feld (14,4). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 14 Spalte 4.
+Betrachte Sudoku 3, Feld (14,10). Hier kann nur 8 sein. Schreibe 8 in Feld Zeile 14 Spalte 10.
+Betrachte Sudoku 3, Wert 3 in Zeile 14. Schreibe 3 in Feld Zeile 14 Spalte 11.
+Betrachte Sudoku 3, Feld (14,12). Hier kann nur 12 sein. Schreibe 12 in Feld Zeile 14 Spalte 12.
+Betrachte Sudoku 3, Feld (14,13). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 14 Spalte 13.
+Betrachte Sudoku 3, Feld (14,14). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 14 Spalte 14.
+Betrachte Sudoku 3, Feld (14,15). Hier kann nur 14 sein. Schreibe 14 in Feld Zeile 14 Spalte 15.
+Betrachte Sudoku 3, Feld (15,2). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 15 Spalte 2.
+Betrachte Sudoku 3, Feld (15,3). Hier kann nur 4 sein. Schreibe 4 in Feld Zeile 15 Spalte 3.
+Betrachte Sudoku 3, Feld (15,4). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 15 Spalte 4.
+Betrachte Sudoku 3, Feld (15,5). Hier kann nur 12 sein. Schreibe 12 in Feld Zeile 15 Spalte 5.
+Betrachte Sudoku 3, Feld (15,6). Hier kann nur 14 sein. Schreibe 14 in Feld Zeile 15 Spalte 6.
+Betrachte Sudoku 3, Feld (15,8). Hier kann nur 16 sein. Schreibe 16 in Feld Zeile 15 Spalte 8.
+Betrachte Sudoku 3, Feld (15,10). Hier kann nur 1 sein. Schreibe 1 in Feld Zeile 15 Spalte 10.
+Betrachte Sudoku 3, Feld (15,13). Hier kann nur 8 sein. Schreibe 8 in Feld Zeile 15 Spalte 13.
+Betrachte Sudoku 3, Feld (15,15). Hier kann nur 7 sein. Schreibe 7 in Feld Zeile 15 Spalte 15.
+Betrachte Sudoku 3, Feld (16,5). Hier kann nur 3 sein. Schreibe 3 in Feld Zeile 16 Spalte 5.
+Betrachte Sudoku 3, Feld (16,6). Hier kann nur 5 sein. Schreibe 5 in Feld Zeile 16 Spalte 6.
+Betrachte Sudoku 3, Feld (16,8). Hier kann nur 6 sein. Schreibe 6 in Feld Zeile 16 Spalte 8.
+Betrachte Sudoku 3, Feld (16,11). Hier kann nur 14 sein. Schreibe 14 in Feld Zeile 16 Spalte 11.
+Betrachte Sudoku 3, Feld (16,12). Hier kann nur 9 sein. Schreibe 9 in Feld Zeile 16 Spalte 12.
+Betrachte Sudoku 3, Feld (16,13). Hier kann nur 15 sein. Schreibe 15 in Feld Zeile 16 Spalte 13.
+Betrachte Sudoku 3, Feld (16,14). Hier kann nur 12 sein. Schreibe 12 in Feld Zeile 16 Spalte 14.
+Betrachte Sudoku 3, Feld (16,15). Hier kann nur 2 sein. Schreibe 2 in Feld Zeile 16 Spalte 15.
+Betrachte Sudoku 3, Feld (16,16). Hier kann nur 13 sein. Schreibe 13 in Feld Zeile 16 Spalte 16.

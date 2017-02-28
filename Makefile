@@ -329,6 +329,33 @@ sudoku.cpp.s:
 	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/sudoku.cpp.s
 .PHONY : sudoku.cpp.s
 
+sudoku_chain.o: sudoku_chain.cpp.o
+
+.PHONY : sudoku_chain.o
+
+# target to build an object file
+sudoku_chain.cpp.o:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/sudoku_chain.cpp.o
+.PHONY : sudoku_chain.cpp.o
+
+sudoku_chain.i: sudoku_chain.cpp.i
+
+.PHONY : sudoku_chain.i
+
+# target to preprocess a source file
+sudoku_chain.cpp.i:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/sudoku_chain.cpp.i
+.PHONY : sudoku_chain.cpp.i
+
+sudoku_chain.s: sudoku_chain.cpp.s
+
+.PHONY : sudoku_chain.s
+
+# target to generate assembly for a file
+sudoku_chain.cpp.s:
+	$(MAKE) -f CMakeFiles/sudoku.dir/build.make CMakeFiles/sudoku.dir/sudoku_chain.cpp.s
+.PHONY : sudoku_chain.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -360,6 +387,9 @@ help:
 	@echo "... sudoku.o"
 	@echo "... sudoku.i"
 	@echo "... sudoku.s"
+	@echo "... sudoku_chain.o"
+	@echo "... sudoku_chain.i"
+	@echo "... sudoku_chain.s"
 .PHONY : help
 
 

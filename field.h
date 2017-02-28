@@ -6,30 +6,43 @@
 
 #include "compare_fields.h"
 
+class SumBox;
+
 class Field
 {
 public:
+  /// pos is only stored for debugging purpose, id must be unique, max_value is the maximum number that the field can hold (e.g. 9 or 16)
+  Field(int id, int max_value);
   Field(int id, int pos_x, int pos_y, int pos_z, int max_value);
   Field(int id, int pos_x, int pos_y, int pos_z, int max_value, std::vector<std::shared_ptr<Field>> dependencies);
 
   void setValue(int value);
+  /// dependencies are other fields that can not have the same value as this field
   void addDependency(std::shared_ptr<Field> dependency);
   void addDependencies(std::set<std::shared_ptr<Field>, CompareFields> dependencies);
+  void addSumBox(std::shared_ptr<SumBox> sumBox);
+
   void setFixed(bool fixed);
   void storePossible();
   void setPosZ(int pos_z);
   void setId(int id);
+  void setMaxValue(int maxValue);
 
-  ///try new value, return false if no more values are possible
+  ///! Try to set new value which fulfills dependency constraints, return false if all values have been tried and none was found
   bool setNewValue();
 
+  ///! set all values except actual value as tried
+  void setAllTriedExceptValue();
+
+  ///! set value to 0 and remove all tried values
   void resetTriedValues();
 
   //getters
-  std::string pos();
+  std::string pos();    /// pos is only for debugging
   int pos_x();
   int pos_y();
   int pos_z();
+
   bool fixed();
   int value();
   int max_value();
@@ -51,6 +64,7 @@ private:
   int value_;			//0 means not set
   std::set<int> triedValues_;
   std::set<std::shared_ptr<Field>, CompareFields> dependencies_;
+  std::shared_ptr<SumBox> sumBox_;
   std::vector<bool> valuesPossible_;
   int n_possible_;
 

@@ -9,7 +9,7 @@
 #include <chrono>
 
 
-InterleavedSudoku::InterleavedSudoku(int size) : Sudoku(size)
+InterleavedSudoku::InterleavedSudoku(int size) : Sudoku(size, Sudoku::SudokuType::classical)
 {
   fields_.resize(squared_size_*squared_size_*2);
 
@@ -79,7 +79,7 @@ void InterleavedSudoku::addDependencies()
 void InterleavedSudoku::permuteNumbers()
 {
   //generate random permutation
-  srand(std::time(NULL));
+  //srand(std::time(NULL));
   std::vector<int> permutation(squared_size_);
   for(int i=0; i<squared_size_; i++)
   {
@@ -327,10 +327,10 @@ void InterleavedSudoku::solveExisting()
       }
       std::cout<<std::endl;
 
-      s<<"fixed_"<<n_fixed()<<".txt";
+      s<<"fixed_"<<nFixed()<<".txt";
 
       std::string filename = s.str();
-      print(1, filename);
+      print(PrintTarget::text_file, filename);
     }
   }
 
@@ -349,7 +349,7 @@ void InterleavedSudoku::solveExisting()
   solutionHints_ = solvingHints.str();
 }
 
-void InterleavedSudoku::setFixed()
+void InterleavedSudoku::fixSomeFieldsToGetASolvableSudoku()
 {
   //Sudoku::setFixed();
   const bool debug = false;
@@ -503,7 +503,7 @@ void InterleavedSudoku::setFixed()
     //here no field has only one possible value and in no row,column or 3x3-box a value can be localized certainly
     //make a value with the most possible values available
 
-    fixField(testFields, maxPossible, fixFieldChooseRandomly, debug);
+    chooseOpenFieldInTestFieldsAndFixToSolution(testFields, maxPossible, fixFieldChooseRandomly, debug);
     lastLoopHadFix = true;
   }
 
@@ -516,7 +516,7 @@ void InterleavedSudoku::setFixed()
     (*fieldIter)->setFixed((*testFieldIter)->fixed());
   }
 
-  std::cout<<n_fixed()<<" Fields are fixed"<<std::endl;
+  std::cout<<nFixed()<<" Fields are fixed"<<std::endl;
   if(recordFullFurtherWays)
   {
     if(debug)
@@ -538,11 +538,11 @@ void InterleavedSudoku::setFixed()
     if(debug)
       std::cout<<std::endl;
 
-    s<<"fixed_"<<n_fixed()<<".txt";
+    s<<"fixed_"<<nFixed()<<".txt";
 
     filename_ = s.str();
     if(writeToFile)
-      print(1, filename_);
+      print(PrintTarget::text_file, filename_);
   }
 
   std::chrono::time_point<std::chrono::system_clock> tEnd = std::chrono::system_clock::now();
@@ -568,7 +568,7 @@ void InterleavedSudoku::eraseNonFixed()
 }
 
 
-void InterleavedSudoku::fixField(std::vector< std::shared_ptr< Field > >& testFields, int maxPossible, bool fixFieldChooseRandomly, bool debug)
+void InterleavedSudoku::chooseOpenFieldInTestFieldsAndFixToSolution(std::vector< std::shared_ptr< Field > >& testFields, int maxPossible, bool fixFieldChooseRandomly, bool debug)
 {
   int posXtoFix = 0;
   int posYtoFix = 0;
@@ -651,14 +651,14 @@ bool InterleavedSudoku::boxCheck(std::list< Sudoku::FurtherWays >& furtherWays_,
 }
 
 
-void InterleavedSudoku::print(int target, std::string filename)
+void InterleavedSudoku::print(PrintTarget target, std::string filename)
 {
   if(filename.empty())
     filename = filename_;
 
   std::stringstream s;
 
-  s<<"Anzahl vorgegebene Zahlen: "<<n_fixed()<<std::endl;
+  s<<"Anzahl vorgegebene Zahlen: "<<nFixed()<<std::endl;
   if(!furtherWays_.empty())
   {
     s<<"Anzahl Möglichkeiten:"<<std::endl;
@@ -669,8 +669,10 @@ void InterleavedSudoku::print(int target, std::string filename)
     s<<std::endl;
   }
 
-  if(target == 0)
+  if(target == PrintTarget::cout)
+  {
     std::cout<<s.str();
+  }
   else
   {
     std::ofstream file(filename.c_str(), std::ios::out | std::ios::app);
@@ -680,7 +682,7 @@ void InterleavedSudoku::print(int target, std::string filename)
 
   printFields(fields_, target, filename);
 
-  if(target != 0)
+  if(target != PrintTarget::cout)
   {
     std::ofstream file(filename.c_str(), std::ios::out | std::ios::app);
     file<<solutionHints_;
@@ -688,12 +690,12 @@ void InterleavedSudoku::print(int target, std::string filename)
   }
 }
 
-void InterleavedSudoku::printFields(std::vector< std::shared_ptr< Field > >& fields, int target, std::__cxx11::string filename)
+void InterleavedSudoku::printFields(std::vector< std::shared_ptr< Field > >& fields, PrintTarget target, std::string filename)
 {
   if(filename.empty())
     filename = filename_;
 
-  if(target == 0)
+  if(target == PrintTarget::cout)
     std::cout<<"A"<<std::endl;
   else
   {
@@ -705,7 +707,7 @@ void InterleavedSudoku::printFields(std::vector< std::shared_ptr< Field > >& fie
   current_z_ = 0;
   Sudoku::printFields(fields, target, filename);
 
-  if(target == 0)
+  if(target == PrintTarget::cout)
     std::cout<<"B"<<std::endl;
   else
   {

@@ -17,6 +17,11 @@ Field::Field(int id, int pos_x, int pos_y, int pos_z, int max_value, std::vector
   dependencies_.insert(dependencies.begin(), dependencies.end());
 }
 
+Field::Field(int id, int max_value) :
+  Field(id, -1, -1, -1, max_value)
+{
+}
+
 void Field::setValue(int value)
 {
   value_ = value;
@@ -25,6 +30,11 @@ void Field::setValue(int value)
 void Field::setFixed(bool fixed)
 {
   fixed_ = fixed;
+}
+
+void Field::setMaxValue(int maxValue)
+{
+  max_value_ = maxValue;
 }
 
 bool Field::fixed()
@@ -40,6 +50,10 @@ int Field::value()
 void Field::addDependency(std::shared_ptr<Field> dependency)
 {
   dependencies_.insert(dependency);
+}
+void Field::addSumBox(std::shared_ptr<SumBox> sumBox)
+{
+  sumBox_ = sumBox;
 }
 
 bool Field::alreadyTried(int i)
@@ -63,23 +77,20 @@ bool Field::setNewValue()
   const bool debug = false;
 
   //choose next value to be tried
-  std::vector<int> valuesToTry(max_value_);
+  std::vector<int> valuesToTry(max_value_);   // valuesToTry is e.g. [1,2,3,4,5,6,7,8,9] for max_value_ = 9
   for(int i=1; i<=max_value_; i++)
     valuesToTry[i-1] = i;
 
   std::random_shuffle(valuesToTry.begin(), valuesToTry.end());
 
-  int i = value_+1;
-
-  if(debug)
-    std::cout<<"start with "<<i<<std::endl;
-
+  // check each value if it is possible
   bool success = false;
   for(int i = 0; i < max_value_; i++)
   {
     int currentValue = valuesToTry[i];
 
-    if(debug)std::cout<<" "<<i;
+    if(debug)
+      std::cout<<" "<<i;
 
     if(!alreadyTried(currentValue))
     {
@@ -108,7 +119,7 @@ bool Field::setNewValue()
 
 void Field::storePossible()
 {
-  if(value_ != 0)		//if value is already known
+  if(value_ != 0)		//if value is already known, set the value to possible all others to not possilble
   {
     for(int i=1; i<=max_value_; i++)
     {
@@ -117,7 +128,7 @@ void Field::storePossible()
     valuesPossible_[value_-1] = true;
     n_possible_ = 0;
   }
-  else
+  else    // if value is not yet known, set possible due to dependencies
   {
     n_possible_ = 0;
     for(int i=1; i<=max_value_; i++)
@@ -160,7 +171,7 @@ int Field::onePossibleValue()
 std::string Field::pos()
 {
   std::stringstream s;
-  s<<pos_x_<<","<<pos_y_<<","<<pos_z_;
+  s<<"id="<<id_<<","<<pos_x_<<","<<pos_y_<<","<<pos_z_;
   return s.str();
 }
 
@@ -214,4 +225,14 @@ void Field::resetTriedValues()
 {
   value_ = 0;
   triedValues_.clear();
+}
+
+void Field::setAllTriedExceptValue()
+{
+  triedValues_.clear();
+  for(int i=0; i<max_value_; i++)
+  {
+    if(i != value_)
+      triedValues_.insert(i);
+  }
 }

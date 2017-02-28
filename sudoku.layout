@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<FileVersion major="1" minor="0" />
+	<ActiveTarget name="all" />
+	<File name="main.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="127" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="9" />
+			<Collapse line="123" />
+			<Collapse line="175" />
+		</Folding>
+	</File>
+	<File name="sudoku.cpp" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6914" topLine="54" />
+		</Cursor>
+		<Folding>
+			<Collapse line="18" />
+			<Collapse line="51" />
+			<Collapse line="56" />
+			<Collapse line="63" />
+			<Collapse line="65" />
+			<Collapse line="68" />
+			<Collapse line="70" />
+			<Collapse line="77" />
+			<Collapse line="105" />
+			<Collapse line="107" />
+			<Collapse line="109" />
+			<Collapse line="123" />
+			<Collapse line="125" />
+			<Collapse line="137" />
+			<Collapse line="139" />
+			<Collapse line="144" />
+			<Collapse line="149" />
+			<Collapse line="160" />
+			<Collapse line="165" />
+			<Collapse line="170" />
+			<Collapse line="177" />
+			<Collapse line="179" />
+			<Collapse line="187" />
+			<Collapse line="192" />
+			<Collapse line="194" />
+			<Collapse line="204" />
+			<Collapse line="206" />
+			<Collapse line="215" />
+			<Collapse line="219" />
+			<Collapse line="226" />
+			<Collapse line="231" />
+			<Collapse line="385" />
+			<Collapse line="393" />
+			<Collapse line="395" />
+			<Collapse line="397" />
+			<Collapse line="406" />
+			<Collapse line="420" />
+			<Collapse line="428" />
+			<Collapse line="431" />
+			<Collapse line="440" />
+			<Collapse line="444" />
+			<Collapse line="450" />
+			<Collapse line="460" />
+			<Collapse line="468" />
+			<Collapse line="482" />
+			<Collapse line="488" />
+			<Collapse line="491" />
+			<Collapse line="496" />
+			<Collapse line="498" />
+			<Collapse line="504" />
+			<Collapse line="514" />
+			<Collapse line="522" />
+			<Collapse line="537" />
+			<Collapse line="543" />
+			<Collapse line="545" />
+			<Collapse line="547" />
+			<Collapse line="554" />
+			<Collapse line="556" />
+			<Collapse line="561" />
+			<Collapse line="567" />
+			<Collapse line="584" />
+			<Collapse line="592" />
+			<Collapse line="610" />
+			<Collapse line="619" />
+			<Collapse line="621" />
+			<Collapse line="625" />
+			<Collapse line="636" />
+			<Collapse line="642" />
+			<Collapse line="650" />
+			<Collapse line="670" />
+			<Collapse line="682" />
+			<Collapse line="687" />
+			<Collapse line="693" />
+			<Collapse line="703" />
+			<Collapse line="709" />
+			<Collapse line="720" />
+			<Collapse line="729" />
+			<Collapse line="756" />
+			<Collapse line="758" />
+			<Collapse line="763" />
+			<Collapse line="782" />
+			<Collapse line="795" />
+			<Collapse line="800" />
+			<Collapse line="811" />
+			<Collapse line="847" />
+			<Collapse line="851" />
+			<Collapse line="861" />
+			<Collapse line="881" />
+			<Collapse line="883" />
+			<Collapse line="956" />
+			<Collapse line="963" />
+			<Collapse line="973" />
+			<Collapse line="981" />
+			<Collapse line="984" />
+			<Collapse line="1017" />
+			<Collapse line="1026" />
+			<Collapse line="1043" />
+			<Collapse line="1045" />
+			<Collapse line="1052" />
+			<Collapse line="1063" />
+			<Collapse line="1066" />
+			<Collapse line="1079" />
+			<Collapse line="1091" />
+			<Collapse line="1101" />
+			<Collapse line="1114" />
+			<Collapse line="1119" />
+			<Collapse line="1133" />
+			<Collapse line="1146" />
+			<Collapse line="1151" />
+			<Collapse line="1169" />
+			<Collapse line="1172" />
+			<Collapse line="1174" />
+			<Collapse line="1176" />
+			<Collapse line="1207" />
+			<Collapse line="1211" />
+			<Collapse line="1220" />
+			<Collapse line="1234" />
+			<Collapse line="1286" />
+			<Collapse line="1288" />
+			<Collapse line="1295" />
+			<Collapse line="1326" />
+			<Collapse line="1329" />
+			<Collapse line="1337" />
+			<Collapse line="1348" />
+			<Collapse line="1353" />
+			<Collapse line="1358" />
+			<Collapse line="1360" />
+			<Collapse line="1370" />
+			<Collapse line="1378" />
+			<Collapse line="1381" />
+			<Collapse line="1388" />
+			<Collapse line="1392" />
+			<Collapse line="1398" />
+			<Collapse line="1412" />
+			<Collapse line="1418" />
+			<Collapse line="1427" />
+			<Collapse line="1429" />
+			<Collapse line="1436" />
+			<Collapse line="1445" />
+			<Collapse line="1448" />
+			<Collapse line="1451" />
+			<Collapse line="1464" />
+			<Collapse line="1470" />
+			<Collapse line="1472" />
+			<Collapse line="1476" />
+			<Collapse line="1480" />
+			<Collapse line="1484" />
+			<Collapse line="1489" />
+			<Collapse line="1491" />
+			<Collapse line="1495" />
+			<Collapse line="1499" />
+			<Collapse line="1503" />
+			<Collapse line="1516" />
+			<Collapse line="1525" />
+			<Collapse line="1529" />
+			<Collapse line="1531" />
+			<Collapse line="1546" />
+			<Collapse line="1549" />
+			<Collapse line="1569" />
+			<Collapse line="1582" />
+			<Collapse line="1584" />
+			<Collapse line="1593" />
+			<Collapse line="1607" />
+			<Collapse line="1611" />
+			<Collapse line="1615" />
+			<Collapse line="1619" />
+			<Collapse line="1636" />
+			<Collapse line="1639" />
+			<Collapse line="1647" />
+			<Collapse line="1800" />
+			<Collapse line="1803" />
+			<Collapse line="1811" />
+		</Folding>
+	</File>
+	<File name="compare_fields.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="137" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="chained_sudoku.cpp" open="1" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2237" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="18" />
+			<Collapse line="40" />
+			<Collapse line="42" />
+			<Collapse line="50" />
+			<Collapse line="52" />
+			<Collapse line="60" />
+			<Collapse line="62" />
+			<Collapse line="70" />
+			<Collapse line="72" />
+			<Collapse line="80" />
+			<Collapse line="85" />
+			<Collapse line="89" />
+			<Collapse line="93" />
+			<Collapse line="97" />
+			<Collapse line="101" />
+			<Collapse line="105" />
+		</Folding>
+	</File>
+	<File name="compare_fields.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="67" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="interleaved_sudoku.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9846" topLine="263" />
+		</Cursor>
+		<Folding>
+			<Collapse line="30" />
+			<Collapse line="38" />
+			<Collapse line="40" />
+			<Collapse line="45" />
+			<Collapse line="49" />
+			<Collapse line="53" />
+			<Collapse line="61" />
+			<Collapse line="66" />
+			<Collapse line="71" />
+			<Collapse line="79" />
+			<Collapse line="84" />
+			<Collapse line="89" />
+			<Collapse line="95" />
+			<Collapse line="97" />
+			<Collapse line="117" />
+			<Collapse line="554" />
+			<Collapse line="561" />
+			<Collapse line="563" />
+			<Collapse line="571" />
+			<Collapse line="577" />
+			<Collapse line="579" />
+			<Collapse line="584" />
+			<Collapse line="593" />
+			<Collapse line="596" />
+			<Collapse line="601" />
+			<Collapse line="620" />
+			<Collapse line="631" />
+			<Collapse line="642" />
+		</Folding>
+	</File>
+	<File name="sudoku.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="639" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="9" />
+			<Collapse line="12" />
+			<Collapse line="20" />
+			<Collapse line="29" />
+			<Collapse line="79" />
+			<Collapse line="87" />
+			<Collapse line="98" />
+		</Folding>
+	</File>
+	<File name="field.h" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="858" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="11" />
+		</Folding>
+	</File>
+	<File name="chained_sudoku.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="304" topLine="0" />
+		</Cursor>
+		<Folding>
+			<Collapse line="8" />
+			<Collapse line="12" />
+		</Folding>
+	</File>
+	<File name="interleaved_sudoku.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="624" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="field.cpp" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3149" topLine="39" />
+		</Cursor>
+		<Folding>
+			<Collapse line="9" />
+			<Collapse line="15" />
+			<Collapse line="21" />
+			<Collapse line="25" />
+			<Collapse line="30" />
+			<Collapse line="35" />
+			<Collapse line="40" />
+			<Collapse line="45" />
+			<Collapse line="50" />
+			<Collapse line="54" />
+			<Collapse line="59" />
+			<Collapse line="64" />
+			<Collapse line="66" />
+			<Collapse line="75" />
+			<Collapse line="88" />
+			<Collapse line="95" />
+			<Collapse line="98" />
+			<Collapse line="120" />
+			<Collapse line="122" />
+			<Collapse line="124" />
+			<Collapse line="131" />
+			<Collapse line="134" />
+			<Collapse line="144" />
+			<Collapse line="149" />
+			<Collapse line="151" />
+			<Collapse line="163" />
+			<Collapse line="178" />
+			<Collapse line="183" />
+			<Collapse line="193" />
+			<Collapse line="198" />
+			<Collapse line="203" />
+			<Collapse line="208" />
+			<Collapse line="213" />
+			<Collapse line="219" />
+			<Collapse line="224" />
+			<Collapse line="230" />
+			<Collapse line="233" />
+		</Folding>
+	</File>
+	<File name="sudoku_chain.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="198" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="sudoku_chain.cpp" open="1" top="1" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3073" topLine="72" />
+		</Cursor>
+		<Folding>
+			<Collapse line="243" />
+			<Collapse line="283" />
+			<Collapse line="311" />
+			<Collapse line="330" />
+			<Collapse line="341" />
+			<Collapse line="347" />
+			<Collapse line="352" />
+			<Collapse line="363" />
+			<Collapse line="368" />
+			<Collapse line="374" />
+			<Collapse line="377" />
+			<Collapse line="380" />
+			<Collapse line="384" />
+			<Collapse line="386" />
+			<Collapse line="395" />
+			<Collapse line="426" />
+			<Collapse line="429" />
+			<Collapse line="438" />
+			<Collapse line="441" />
+			<Collapse line="447" />
+			<Collapse line="457" />
+			<Collapse line="466" />
+			<Collapse line="496" />
+			<Collapse line="499" />
+			<Collapse line="505" />
+			<Collapse line="525" />
+			<Collapse line="539" />
+			<Collapse line="549" />
+			<Collapse line="552" />
+			<Collapse line="558" />
+			<Collapse line="569" />
+			<Collapse line="578" />
+			<Collapse line="595" />
+			<Collapse line="601" />
+			<Collapse line="604" />
+			<Collapse line="607" />
+			<Collapse line="616" />
+			<Collapse line="619" />
+			<Collapse line="625" />
+			<Collapse line="635" />
+			<Collapse line="644" />
+			<Collapse line="705" />
+			<Collapse line="722" />
+			<Collapse line="732" />
+			<Collapse line="752" />
+			<Collapse line="765" />
+			<Collapse line="778" />
+			<Collapse line="784" />
+			<Collapse line="790" />
+			<Collapse line="806" />
+			<Collapse line="816" />
+			<Collapse line="864" />
+			<Collapse line="871" />
+			<Collapse line="875" />
+			<Collapse line="896" />
+			<Collapse line="898" />
+			<Collapse line="924" />
+			<Collapse line="926" />
+			<Collapse line="934" />
+			<Collapse line="942" />
+			<Collapse line="946" />
+			<Collapse line="952" />
+			<Collapse line="956" />
+			<Collapse line="965" />
+			<Collapse line="967" />
+			<Collapse line="979" />
+			<Collapse line="986" />
+			<Collapse line="996" />
+		</Folding>
+	</File>
+</CodeBlocks_layout_file>

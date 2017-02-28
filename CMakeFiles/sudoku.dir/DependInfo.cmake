@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/store/Programmierung/sudoku/interleaved_sudoku.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/interleaved_sudoku.cpp.o"
   "/store/Programmierung/sudoku/main.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/main.cpp.o"
   "/store/Programmierung/sudoku/sudoku.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/sudoku.cpp.o"
+  "/store/Programmierung/sudoku/sudoku_chain.cpp" "/store/Programmierung/sudoku/CMakeFiles/sudoku.dir/sudoku_chain.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

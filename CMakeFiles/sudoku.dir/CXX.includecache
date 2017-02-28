@@ -25,14 +25,20 @@ vector
 -
 chrono
 -
+iomanip
+-
 algorithm
 -
 random
+-
+assert.h
 -
 
 /store/Programmierung/sudoku/chained_sudoku.h
 sudoku.h
 /store/Programmierung/sudoku/sudoku.h
+functional
+-
 
 /store/Programmierung/sudoku/compare_fields.cpp
 compare_fields.h
@@ -91,6 +97,8 @@ iostream
 -
 sudoku.h
 /store/Programmierung/sudoku/sudoku.h
+sudoku_chain.h
+/store/Programmierung/sudoku/sudoku_chain.h
 interleaved_sudoku.h
 /store/Programmierung/sudoku/interleaved_sudoku.h
 chained_sudoku.h
@@ -133,4 +141,22 @@ list
 -
 field.h
 /store/Programmierung/sudoku/field.h
+
+/store/Programmierung/sudoku/sudoku_chain.cpp
+sudoku_chain.h
+/store/Programmierung/sudoku/sudoku_chain.h
+iostream
+-
+cmath
+-
+assert.h
+-
+fstream
+-
+
+/store/Programmierung/sudoku/sudoku_chain.h
+memory
+-
+chained_sudoku.h
+/store/Programmierung/sudoku/chained_sudoku.h
 

@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/sudoku.dir/field.cpp.o"
   "CMakeFiles/sudoku.dir/compare_fields.cpp.o"
   "CMakeFiles/sudoku.dir/chained_sudoku.cpp.o"
+  "CMakeFiles/sudoku.dir/sudoku_chain.cpp.o"
   "sudoku.pdb"
   "sudoku"
 )

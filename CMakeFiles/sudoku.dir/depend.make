@@ -27,9 +27,17 @@ CMakeFiles/sudoku.dir/main.cpp.o: field.h
 CMakeFiles/sudoku.dir/main.cpp.o: interleaved_sudoku.h
 CMakeFiles/sudoku.dir/main.cpp.o: main.cpp
 CMakeFiles/sudoku.dir/main.cpp.o: sudoku.h
+CMakeFiles/sudoku.dir/main.cpp.o: sudoku_chain.h
 
 CMakeFiles/sudoku.dir/sudoku.cpp.o: compare_fields.h
 CMakeFiles/sudoku.dir/sudoku.cpp.o: field.h
 CMakeFiles/sudoku.dir/sudoku.cpp.o: sudoku.cpp
 CMakeFiles/sudoku.dir/sudoku.cpp.o: sudoku.h
+
+CMakeFiles/sudoku.dir/sudoku_chain.cpp.o: chained_sudoku.h
+CMakeFiles/sudoku.dir/sudoku_chain.cpp.o: compare_fields.h
+CMakeFiles/sudoku.dir/sudoku_chain.cpp.o: field.h
+CMakeFiles/sudoku.dir/sudoku_chain.cpp.o: sudoku.h
+CMakeFiles/sudoku.dir/sudoku_chain.cpp.o: sudoku_chain.cpp
+CMakeFiles/sudoku.dir/sudoku_chain.cpp.o: sudoku_chain.h
 
