@@ -13,6 +13,7 @@ CMake Binary=file:///usr/bin/cmake
 Environment Profile=
 Extra Arguments=
 Install Directory=file:///usr/local
+Runtime=Host System
 
 [Defines And Includes][Compiler]
 Name=GCC
@@ -47,3 +48,6 @@ Start With=ApplicationOutput
 Use External Terminal=false
 Working Directory=
 isExecutable=false
+
+[Project]
+VersionControlSupport=kdevgit
