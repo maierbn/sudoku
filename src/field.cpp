@@ -5,7 +5,7 @@
 #include <algorithm>
 
 Field::Field(int id, int pos_x, int pos_y, int pos_z, int max_value) :
-  value_(0), valuesPossible_(max_value), n_possible_(0), pos_x_(pos_x), pos_y_(pos_y), pos_z_(pos_z), id_(id),
+  value_(0), valuesPossible_(max_value, true), n_possible_(max_value), pos_x_(pos_x), pos_y_(pos_y), pos_z_(pos_z), id_(id),
   fixed_(false), max_value_(max_value)
 {
 
@@ -51,6 +51,12 @@ void Field::addDependency(std::shared_ptr<Field> dependency)
 {
   dependencies_.insert(dependency);
 }
+
+void Field::addGroupDependency(std::set<std::shared_ptr<Field>, CompareFields> groupDependencies)
+{
+  groupDependencies_.push_back(groupDependencies);
+}
+
 void Field::addSumBox(std::shared_ptr<SumBox> sumBox)
 {
   sumBox_ = sumBox;
@@ -61,12 +67,59 @@ bool Field::alreadyTried(int i)
   return triedValues_.find(i) != triedValues_.end();
 }
 
-bool Field::isPossibleFromDependencies(int i)
+void Field::getPossibleValuesToTry(std::set<int> &valuesPossible)
 {
+  for (int j = 1; j <= max_value_; j++)
+  {
+    if (valuePossible(j))
+    {
+      valuesPossible.insert(j);
+    }
+  }
+}
+
+bool Field::isPossibleFromDependencies(int i, bool includeGroupDependencies=true)
+{
+  const bool debug = false;
+  //std::cout << pos_x_ << "," << pos_y_ << " isPossibleFromDependencies(" << i << "), ";
+
+  // check dependencies
   for(auto &dependency : dependencies_)
   {
     if(dependency->value() == i)
       return false;
+  }
+
+  
+  if (!includeGroupDependencies)
+    return true;
+
+  // check group dependencies
+  for(auto &groupDependency : groupDependencies_)
+  {
+    // collect possible values in group
+    std::set<int> valuesPossible;
+    for(auto &groupField : groupDependency)
+    {
+      groupField->getPossibleValuesToTry(valuesPossible);
+    }    
+
+    if (debug)
+    {
+      std::cout << pos_x_ << "," << pos_y_ << " isPossibleFromDependencies(" << i << "), ";
+
+      std::cout << "valuesPossible: { ";
+      for (const auto& value : valuesPossible) {
+          std::cout << value << " ";
+      }
+      std::cout << "}: possible=" << std::boolalpha << !(valuesPossible.find(i) == valuesPossible.end()) << std::endl;
+    }
+
+    // If `i` is not among the possible values for this group
+    if (valuesPossible.find(i) == valuesPossible.end())
+    {
+      return false;
+    }
   }
 
   return true;
@@ -76,26 +129,49 @@ bool Field::setNewValue()
 {
   const bool debug = false;
 
+  std::set<int> valuesPossible;
+  getPossibleValuesToTry(valuesPossible);
+  std::vector<int> valuesToTry2(valuesPossible.begin(), valuesPossible.end());   // valuesToTry is e.g. [1,2,3,4,5,6,7,8,9] for max_value_ = 9
+
   //choose next value to be tried
   std::vector<int> valuesToTry(max_value_);   // valuesToTry is e.g. [1,2,3,4,5,6,7,8,9] for max_value_ = 9
   for(int i=1; i<=max_value_; i++)
     valuesToTry[i-1] = i;
 
   std::random_shuffle(valuesToTry.begin(), valuesToTry.end());
+  std::random_shuffle(valuesToTry2.begin(), valuesToTry2.end());
+
+  if (debug)
+  {
+    std::cout << "valuesToTry: [";
+    for (auto value : valuesToTry)
+    {
+      std::cout << value << ",";
+    }
+    std::cout << "]" << std::endl;
+
+    std::cout << "valuesToTry2: [";
+    for (auto value : valuesToTry2)
+    {
+      std::cout << value << ",";
+    }
+    std::cout << "]" << std::endl;
+  }
 
   // check each value if it is possible
   bool success = false;
-  for(int i = 0; i < max_value_; i++)
+  //for(int i = 0; i < max_value_; i++)
+  for(auto currentValue : valuesToTry)
   {
-    int currentValue = valuesToTry[i];
+    //int currentValue = valuesToTry[i];
 
-    if(debug)
-      std::cout<<" "<<i;
+    //if(debug)
+    //  std::cout<<" "<<i;
 
     if(!alreadyTried(currentValue))
     {
       triedValues_.insert(currentValue);
-      if(isPossibleFromDependencies(currentValue))
+      if(isPossibleFromDependencies(currentValue, true))
       {
         value_ = currentValue;
         if(debug)std::cout<<"set "<<pos()<<" to "<<value_<<std::endl;
@@ -119,7 +195,7 @@ bool Field::setNewValue()
 
 void Field::storePossible()
 {
-  if(value_ != 0)		//if value is already known, set the value to possible all others to not possilble
+  if(value_ != 0)		//if value is already known, set the value to possible, all others to not possilble
   {
     for(int i=1; i<=max_value_; i++)
     {
@@ -171,7 +247,7 @@ int Field::onePossibleValue()
 std::string Field::pos()
 {
   std::stringstream s;
-  s<<"id="<<id_<<","<<pos_x_<<","<<pos_y_<<","<<pos_z_;
+  s<<"id="<<id_<<", (x:"<<pos_x_<<", y:"<<pos_y_<<", z:"<<pos_z_<<")";
   return s.str();
 }
 

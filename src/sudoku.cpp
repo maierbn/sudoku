@@ -14,7 +14,7 @@
 
 #include "field.h"
 
-const int RESTART_THRESHOLD = 20000; // 1000000
+const int RESTART_THRESHOLD = 1000000; // 1000000
 
 const std::string Sudoku::types[5] = {
     "classical",            // the standard sudoku rules
@@ -235,6 +235,17 @@ void Sudoku::setFixed(int pos_x, int pos_y, bool fixed)
   fields_[index(pos_x,pos_y)]->setFixed(fixed);
 }
 
+void Sudoku::resetFixed()
+{
+  for (int pos_x = 0; pos_x < squared_size_; pos_x++)
+  {
+    for (int pos_y = 0; pos_y < squared_size_; pos_y++)
+    {
+      fields_[index(pos_x,pos_y)]->setFixed(false);
+    }
+  }
+}
+
 void Sudoku::set(int pos_x, int pos_y, int value, bool fixed)
 {
   fields_[index(pos_x,pos_y)]->setValue(value);
@@ -286,6 +297,7 @@ void Sudoku::createSolution(int number)
     {
       if(debug)
         std::cout<<"success"<<std::endl;
+        trace.top()->storePossible();
 
       // if all fields are filled in, method is done
       if(nextField == field_end_)
@@ -757,7 +769,7 @@ void Sudoku::fixSomeFieldsToGetASolvableSudoku(bool createSolutionHints, FieldVe
   const bool recordFullFurtherWays = true;
 
   //if new fields to become fixed are chosen completely randomly, without considering the number of possibilities in that field
-  const bool fixFieldChooseRandomly = false;
+  const bool fixFieldChooseRandomly = true;
 
   bool fixOccuredInLastIteration = false;
   for(;;)

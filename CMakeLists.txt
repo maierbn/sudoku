@@ -10,6 +10,7 @@ add_executable(sudoku
   src/compare_fields.cpp 
   src/chained_sudoku.cpp 
   src/sudoku_chain.cpp
+  src/train_sudoku.cpp
 )
 
 

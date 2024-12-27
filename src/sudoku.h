@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include <list>
+#include <string>
 
 #include "field.h"
 
@@ -72,6 +73,9 @@ public:
 
   ///! set field (pos_x, pos_y) fixed
   void setFixed(int pos_x, int pos_y, bool fixed);
+
+  ///! reset all fixed properties
+  void resetFixed();
 
   ///! set field (pos_x, pos_y) to value and optionally fixed
   void set(int pos_x, int pos_y, int value, bool fixed=false);

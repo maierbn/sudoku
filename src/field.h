@@ -3,6 +3,7 @@
 #include <vector>
 #include <memory>
 #include <set>
+#include <list>
 
 #include "compare_fields.h"
 
@@ -20,6 +21,7 @@ public:
   /// dependencies are other fields that can not have the same value as this field
   void addDependency(std::shared_ptr<Field> dependency);
   void addDependencies(std::set<std::shared_ptr<Field>, CompareFields> dependencies);
+  void addGroupDependency(std::set<std::shared_ptr<Field>, CompareFields> groupDependencies);
   void addSumBox(std::shared_ptr<SumBox> sumBox);
 
   void setFixed(bool fixed);
@@ -59,11 +61,16 @@ public:
 private:
 
   bool alreadyTried(int i);
-  bool isPossibleFromDependencies(int i);
+  bool isPossibleFromDependencies(int i, bool includeGroupDependencies);
+  void getPossibleValuesToTry(std::set<int> &valuesPossible);
 
   int value_;			//0 means not set
   std::set<int> triedValues_;
+  
   std::set<std::shared_ptr<Field>, CompareFields> dependencies_;
+  std::vector<std::set<std::shared_ptr<Field>, CompareFields>> groupDependencies_;
+
+
   std::shared_ptr<SumBox> sumBox_;
   std::vector<bool> valuesPossible_;
   int n_possible_;

@@ -1,46 +1,69 @@
 #include <iostream>
+#include <sstream>
 
 #include "sudoku.h"
 #include "sudoku_chain.h"
+#include "train_sudoku.h"
 
 #include "interleaved_sudoku.h"
 #include "chained_sudoku.h"
 
+#include <ctime>
+
 int main(int argc, char **argv)
 {
+  srand(std::time(NULL));
 
-  SudokuChain sudokuChain;
-  sudokuChain.generate();
+  TrainSudoku trainSudoku(3);
+
+  trainSudoku.createSolution();
+  trainSudoku.print();
+  trainSudoku.print(Sudoku::PrintTarget::svg_file, "output/sudoku_solution.svg", Sudoku::PrintMode::solved);
+
+  for (int i = 0; i < 10; i++)
+  {
+    trainSudoku.resetFixed();
+    
+    std::stringstream filename_a;
+    filename_a << "output/sudoku_" << i << ".svg";
+    
+    std::stringstream filename_b;
+    filename_b << "output/solution_" << i << ".txt";
+    
+    trainSudoku.collectSolutionHints(filename_b.str());
+    trainSudoku.print(Sudoku::PrintTarget::svg_file, filename_a.str(), Sudoku::PrintMode::all_fixed);
+  }
 
   exit(0);
   // create sudoku
-#if 0
-  Sudoku sudoku(3);
+#if 1
+  Sudoku sudoku(4, Sudoku::SudokuType::classical);
 
-  sudoku.set(0, 5, 3, true);
-  sudoku.set(1, 5, 6, true);
-  sudoku.set(2, 5, 9, true);
-  sudoku.set(0, 6, 2, true);
-  sudoku.set(1, 6, 1, true);
-  sudoku.set(2, 6, 8, true);
-  sudoku.set(0, 7, 5, true);
-  sudoku.set(1, 7, 4, true);
-  sudoku.set(2, 7, 7, true);
+  sudoku.createSolution();
+  sudoku.print();
+
+  //sudoku.eraseNonFixed();
+  sudoku.collectSolutionHints("a.txt");
+
+  sudoku.print(Sudoku::PrintTarget::text_file);
+  sudoku.permuteNumbers();
+  sudoku.print();
+
+  exit(0);
 
   sudoku.createSolution();
   sudoku.print(Sudoku::PrintTarget::svg_file, "E_solution.svg", Sudoku::PrintMode::solved);
 
   //sudoku.permuteNumbers();
-  sudoku.setOneFixed(0, 5, false);
-  sudoku.setOneFixed(1, 5, false);
-  sudoku.setOneFixed(2, 5, false);
-  sudoku.setOneFixed(0, 6, false);
-  sudoku.setOneFixed(1, 6, false);
-  sudoku.setOneFixed(2, 6, false);
-  sudoku.setOneFixed(0, 7, false);
-  sudoku.setOneFixed(1, 7, false);
-  sudoku.setOneFixed(2, 7, false);
-  sudoku.setFixed();
+  sudoku.setFixed(0, 5, false);
+  sudoku.setFixed(1, 5, false);
+  sudoku.setFixed(2, 5, false);
+  sudoku.setFixed(0, 6, false);
+  sudoku.setFixed(1, 6, false);
+  sudoku.setFixed(2, 6, false);
+  sudoku.setFixed(0, 7, false);
+  sudoku.setFixed(1, 7, false);
+  sudoku.setFixed(2, 7, false);
   sudoku.print(Sudoku::PrintTarget::svg_file, "EE.svg", Sudoku::PrintMode::all_fixed);
 
   sudoku.eraseNonFixed();
